@@ -1,7 +1,7 @@
 package net.pmkjun.pyrofishinghelper;
 
 import com.mojang.logging.LogUtils;
-import net.pmkjun.pyrofishinghelper.item.FishItems;
+import net.pmkjun.pyrofishinghelper.item.FishItemList;
 import org.slf4j.Logger;
 
 public class FishHelperMod
@@ -13,6 +13,5 @@ public class FishHelperMod
 	public static void init() {
 		client = new FishHelperClient();
 		client.init();
-		FishItems.register();
 	}
 }

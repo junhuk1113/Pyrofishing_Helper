@@ -8,7 +8,6 @@
     "FishingBobberSilentMixin",
     "FishingMixin",
     "GuiMixin",
-    "ItemModelsMixin",
     "ItemPickupMixin"
   ],
   "client": [

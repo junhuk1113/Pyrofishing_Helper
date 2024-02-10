@@ -1,4 +1,4 @@
-package net.pmkjun.pyrofishinghelper.mixin;
+package net.pmkjun.pyrofishinghelper.fabric.mixin;
 
 import net.minecraft.client.render.item.ItemModels;
 import net.minecraft.client.render.model.BakedModel;
@@ -6,7 +6,7 @@ import net.minecraft.client.render.model.BakedModelManager;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemConvertible;
 import net.minecraft.item.ItemStack;
-import net.pmkjun.pyrofishinghelper.item.FishItems;
+import net.pmkjun.pyrofishinghelper.fabric.item.FishItems;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -36,3 +36,4 @@ public class ItemModelsMixin {
     }
 
 }
+
