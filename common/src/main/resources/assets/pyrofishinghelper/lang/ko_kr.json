@@ -1,0 +1,24 @@
+{
+  "fishhelper.config.title" : "이클립스 Fish Helper",
+  "fishhelper.config.cooldownfield" : "토템 쿨타임",
+  "fishhelper.config.activatefield" : "토템 지속시간",
+  "fishhelper.config.cooldownreductionfield" : "토템 쿨감시간",
+  "fishhelper.config.savebutton" : "설정 저장",
+  "fishhelper.config.backbutton" : "돌아가기",
+  "fishhelper.config.showtime" : "토템 시간 표시",
+  "fishhelper.config.enable" : "토템 타이머 표시 : 켜짐",
+  "fishhelper.config.disable" : "토템 타이머 표시 : 꺼짐",
+  "fishhelper.config.minute" : "분",
+  "fishhelper.config.timerleft" : "x : 왼쪽",
+  "fishhelper.config.timerright": "x : 오른쪽",
+  "fishhelper.config.changepos" : "토템 타이머 위치설정",
+  "fishhelper.config.muter_enable" : "다른 사람 낚시찌 소리 음소거 : 켜짐",
+  "fishhelper.config.muter_disable" : "다른 사람 낚시찌 소리 음소거 : 꺼짐",
+  "fishhelper.config.customtexture_enable" : "물고기 등급별 텍스쳐 : 켜짐",
+  "fishhelper.config.customtexture_disable" : "물고기 등급별 텍스쳐 : 꺼짐",
+  "fishhelper.config.chattinglog_enable" : "페더클 채팅 로그 : 켜짐",
+  "fishhelper.config.chattinglog_disable" : "페더클 채팅 로그 : 꺼짐",
+
+  "fishhelper.key.category" : "Pyro Fishing Helper",
+  "fishhelper.key.open_settings" : "피시헬퍼 설정열기"
+}

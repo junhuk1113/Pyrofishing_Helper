@@ -7,7 +7,6 @@ import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.gui.widget.TextFieldWidget;
 import net.minecraft.text.Text;
 import net.pmkjun.pyrofishinghelper.FishHelperClient;
-import net.pmkjun.pyrofishinghelper.FishHelperMod;
 import net.pmkjun.pyrofishinghelper.gui.widget.Slider;
 import net.pmkjun.pyrofishinghelper.util.ConvertActivateTime;
 import net.pmkjun.pyrofishinghelper.util.ConvertCooldown;
@@ -158,7 +157,7 @@ public class ConfigScreen extends Screen {
     }
 
     public void render(DrawContext context, int mouseX, int mouseY, float delta) {
-        //this.renderBackground(context,mouseX,mouseY,delta);
+        this.renderBackground(context);
         context.drawTextWithShadow(this.textRenderer, Text.translatable("fishhelper.config.cooldownreductionfield"), 10, 60, 0xFFFFFF);
         context.drawTextWithShadow(this.textRenderer,Text.translatable("fishhelper.config.changepos"),10,155,0xFFFFFF);
 

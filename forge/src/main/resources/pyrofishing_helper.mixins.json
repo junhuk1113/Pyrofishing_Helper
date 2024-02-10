@@ -1,7 +1,7 @@
 {
   "required": true,
   "minVersion": "0.8",
-  "package": "net.pmkjun.pyrofishing_helper.forge.mixin",
+  "package": "net.pmkjun.pyrofishinghelper.forge.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
   ],

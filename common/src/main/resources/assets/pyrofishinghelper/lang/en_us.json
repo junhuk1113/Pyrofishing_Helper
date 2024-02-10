@@ -1,0 +1,24 @@
+{
+  "fishhelper.config.title" : "fish-helper",
+  "fishhelper.config.cooldownfield" : "Totem CoolDown",
+  "fishhelper.config.activatefield" : "Totem Activate",
+  "fishhelper.config.cooldownreductionfield" : "CoolDown reduction",
+  "fishhelper.config.savebutton" : "Save setting",
+  "fishhelper.config.backbutton" : "Back",
+  "fishhelper.config.showtime" : "Show Totem timer",
+  "fishhelper.config.enable" : "Show totem time : enable",
+  "fishhelper.config.disable" : "Show totem time : disable",
+  "fishhelper.config.minute" : "minute",
+  "fishhelper.config.timerleft" : "x : left",
+  "fishhelper.config.timerright": "x : right",
+  "fishhelper.config.changepos" : "Set position Totem timer",
+  "fishhelper.config.muter_enable" : "Mute other Fishing sound : enable",
+  "fishhelper.config.muter_disable" : "Mute other Fishing sound : disable",
+  "fishhelper.config.customtexture_enable" : "Custom Texture : enable",
+  "fishhelper.config.customtexture_disable" : "Custom Texture : disable",
+  "fishhelper.config.chattinglog_enable" : "Feather Client Chatlog : enable",
+  "fishhelper.config.chattinglog_disable" : "Feather Client Chatlog : disable",
+
+  "fishhelper.key.category" : "Pyro Fishing Helper",
+  "fishhelper.key.open_settings" : "Open FishHelper setting"
+}

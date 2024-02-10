@@ -9,13 +9,14 @@
   "contact": {},
 
   "license": "MIT",
-  "icon": "icon.png",
+  "icon": "assets/pyrofishinghelper/icon.png",
 
   "environment": "*",
   "entrypoints": {
     "main": [
-      "net.pmkjun.pyrofishing_helper.fabric.PyrofishingHelperFabric"
-    ]
+      "net.pmkjun.pyrofishinghelper.fabric.PyrofishingHelperFabric"
+    ],
+    "modmenu": ["net.pmkjun.pyrofishinghelper.fabric.config.FishHelperModMenu"]
   },
   "mixins": [
     "pyrofishing_helper.mixins.json",

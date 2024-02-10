@@ -1,11 +1,17 @@
 {
   "required": true,
   "minVersion": "0.8",
-  "package": "net.pmkjun.pyrofishing_helper.mixin",
+  "package": "net.pmkjun.pyrofishinghelper.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
   ],
   "client": [
+    "ChatMixin",
+    "FishingBobberSilentMixin",
+    "FishingMixin",
+    "GuiMixin",
+    "ItemModelsMixin",
+    "ItemPickupMixin"
   ],
   "injectors": {
     "defaultRequire": 1

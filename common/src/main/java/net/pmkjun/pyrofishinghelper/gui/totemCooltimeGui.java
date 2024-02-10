@@ -8,7 +8,6 @@ import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.pmkjun.pyrofishinghelper.FishHelperClient;
-import net.pmkjun.pyrofishinghelper.FishHelperMod;
 import net.pmkjun.pyrofishinghelper.util.Timer;
 
 
