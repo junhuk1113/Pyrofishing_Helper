@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "id": "pyrofishing_helper",
+  "version": "${version}",
+
+  "name": "Pyrofishing Helper",
+  "description": "",
+  "authors": [],
+  "contact": {},
+
+  "license": "MIT",
+  "icon": "icon.png",
+
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "net.pmkjun.pyrofishing_helper.fabric.PyrofishingHelperFabric"
+    ]
+  },
+  "mixins": [
+    "pyrofishing_helper.mixins.json",
+    "pyrofishing_helper-common.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.14.21",
+    "minecraft": ">=1.20"
+  }
+}
