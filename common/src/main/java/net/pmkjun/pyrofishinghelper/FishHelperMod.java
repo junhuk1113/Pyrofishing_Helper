@@ -6,7 +6,7 @@ import org.slf4j.Logger;
 
 public class FishHelperMod
 {
-	public static final String MOD_ID = "pyrofishing_helper";
+	public static final String MOD_ID = "pyrofishinghelper";
 	public static final Logger LOGGER = LogUtils.getLogger();
 
 	public static FishHelperClient client;

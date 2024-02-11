@@ -2,46 +2,43 @@ package net.pmkjun.pyrofishinghelper.forge.item;
 
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.registry.Registries;
-import net.minecraft.registry.Registry;
-import net.minecraft.util.Identifier;
+import net.minecraftforge.registries.DeferredRegister;
+import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.RegistryObject;
 import net.pmkjun.pyrofishinghelper.FishHelperClient;
+import net.pmkjun.pyrofishinghelper.FishHelperMod;
 import net.pmkjun.pyrofishinghelper.item.FishItemList;
 
 import java.util.Arrays;
 
 public class FishItems {
-    public static final Item[] COMMON_FISH = new Item[FishItemList.COMMMON_FISH_LIST.length];
-    public static final Item[] UNCOMMON_FISH = new Item[FishItemList.UNCOMMON_FISH_LIST.length];
-    public static final Item[] RARE_FISH = new Item[FishItemList.RARE_FISH_LIST.length];
-    public static final Item[] EPIC_FISH = new Item[FishItemList.EPIC_FISH_LIST.length];
-    public static final Item[] LEGENDARY_FISH = new Item[FishItemList.LEGENDARY_FISH_LIST.length];
-    public static final Item[] MYTHIC_FISH = new Item[FishItemList.MYTHIC_FISH_LIST.length];
+    public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, FishHelperMod.MOD_ID);
+    public static final RegistryObject<?>[] COMMON_FISH = new RegistryObject<?>[FishItemList.COMMMON_FISH_LIST.length];
+    public static final RegistryObject<?>[] UNCOMMON_FISH = new RegistryObject<?>[FishItemList.UNCOMMON_FISH_LIST.length];
+    public static final RegistryObject<?>[] RARE_FISH = new RegistryObject<?>[FishItemList.RARE_FISH_LIST.length];
+    public static final RegistryObject<?>[] EPIC_FISH = new RegistryObject<?>[FishItemList.EPIC_FISH_LIST.length];
+    public static final RegistryObject<?>[] LEGENDARY_FISH = new RegistryObject<?>[FishItemList.LEGENDARY_FISH_LIST.length];
+    public static final RegistryObject<?>[] MYTHIC_FISH = new RegistryObject<?>[FishItemList.MYTHIC_FISH_LIST.length];
+
     public static void register(){
         int i;
-        for(i = 0; i<COMMON_FISH.length; i++){
-            COMMON_FISH[i] = new Item(new Item.Settings());
-            Registry.register((Registry)Registries.ITEM, new Identifier("pyrofishinghelper", "common_"+i), COMMON_FISH[i]);
+        for(i = 0; i<FishItemList.COMMMON_FISH_LIST.length; i++){
+            COMMON_FISH[i] = ITEMS.register("common_"+i, () -> new Item(new Item.Settings()));
         }
-        for(i = 0; i<UNCOMMON_FISH.length; i++){
-            UNCOMMON_FISH[i] = new Item(new Item.Settings());
-            Registry.register((Registry)Registries.ITEM, new Identifier("pyrofishinghelper", "uncommon_"+i), UNCOMMON_FISH[i]);
+        for(i = 0; i<FishItemList.UNCOMMON_FISH_LIST.length; i++){
+            UNCOMMON_FISH[i] = ITEMS.register("uncommon_"+i, () -> new Item(new Item.Settings()));
         }
-        for(i = 0; i<RARE_FISH.length; i++){
-            RARE_FISH[i] = new Item(new Item.Settings());
-            Registry.register((Registry)Registries.ITEM, new Identifier("pyrofishinghelper", "rare_"+i), RARE_FISH[i]);
+        for(i = 0; i<FishItemList.RARE_FISH_LIST.length; i++){
+            RARE_FISH[i] = ITEMS.register("rare_"+i, () -> new Item(new Item.Settings()));
         }
-        for(i = 0; i<EPIC_FISH.length; i++){
-            EPIC_FISH[i] = new Item(new Item.Settings());
-            Registry.register((Registry)Registries.ITEM, new Identifier("pyrofishinghelper", "epic_"+i), EPIC_FISH[i]);
+        for(i = 0; i<FishItemList.EPIC_FISH_LIST.length; i++){
+            EPIC_FISH[i] = ITEMS.register("epic_"+i, () -> new Item(new Item.Settings()));
         }
-        for(i = 0; i<LEGENDARY_FISH.length; i++){
-            LEGENDARY_FISH[i] = new Item(new Item.Settings());
-            Registry.register((Registry)Registries.ITEM, new Identifier("pyrofishinghelper", "legendary_"+i), LEGENDARY_FISH[i]);
+        for(i = 0; i<FishItemList.LEGENDARY_FISH_LIST.length; i++){
+            LEGENDARY_FISH[i] = ITEMS.register("legendary_"+i, () -> new Item(new Item.Settings()));
         }
-        for(i = 0; i<MYTHIC_FISH.length; i++){
-            MYTHIC_FISH[i] = new Item(new Item.Settings());
-            Registry.register((Registry)Registries.ITEM, new Identifier("pyrofishinghelper", "mythic_"+i), MYTHIC_FISH[i]);
+        for(i = 0; i<FishItemList.MYTHIC_FISH_LIST.length; i++){
+            MYTHIC_FISH[i] = ITEMS.register("mythic_"+i, () -> new Item(new Item.Settings()));
         }
 
     }
@@ -53,22 +50,22 @@ public class FishItems {
         if(!FishHelperClient.getInstance().data.toggleCustomTexture) return null;
 
         index = Arrays.stream(FishItemList.COMMMON_FISH_LIST).toList().indexOf(name);
-        if(index!=-1) return COMMON_FISH[index];
+        if(index!=-1) return (Item)COMMON_FISH[index].get();
 
         index = Arrays.stream(FishItemList.UNCOMMON_FISH_LIST).toList().indexOf(name);
-        if(index!=-1) return UNCOMMON_FISH[index];
+        if(index!=-1) return (Item)UNCOMMON_FISH[index].get();
 
         index = Arrays.stream(FishItemList.RARE_FISH_LIST).toList().indexOf(name);
-        if(index!=-1) return RARE_FISH[index];
+        if(index!=-1) return (Item)RARE_FISH[index].get();
 
         index = Arrays.stream(FishItemList.EPIC_FISH_LIST).toList().indexOf(name);
-        if(index!=-1) return EPIC_FISH[index];
+        if(index!=-1) return (Item)EPIC_FISH[index].get();
 
         index = Arrays.stream(FishItemList.LEGENDARY_FISH_LIST).toList().indexOf(name);
-        if(index!=-1) return LEGENDARY_FISH[index];
+        if(index!=-1) return (Item)LEGENDARY_FISH[index].get();
 
         index = Arrays.stream(FishItemList.MYTHIC_FISH_LIST).toList().indexOf(name);
-        if(index!=-1) return MYTHIC_FISH[index];
+        if(index!=-1) return (Item)MYTHIC_FISH[index].get();
 
         return null;
     }

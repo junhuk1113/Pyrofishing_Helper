@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "id": "pyrofishing_helper",
+  "id": "pyrofishinghelper",
   "version": "${version}",
 
   "name": "Pyrofishing Helper",
