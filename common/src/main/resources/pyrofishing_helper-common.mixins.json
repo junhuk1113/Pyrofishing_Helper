@@ -7,7 +7,6 @@
     "ChatMixin",
     "FishingBobberSilentMixin",
     "FishingMixin",
-    "GuiMixin",
     "ItemPickupMixin"
   ],
   "client": [
