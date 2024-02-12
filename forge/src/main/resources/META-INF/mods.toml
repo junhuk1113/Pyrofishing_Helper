@@ -22,6 +22,8 @@ modId="pyrofishinghelper" #mandatory
 version="${version}" #mandatory
 # A display name for the mod
 displayName="Pyrofishing Helper" #mandatory
+authors="${modAuthor}"
+credits="${modCredits}"
 # A URL to query for updates for this mod. See the JSON update specification <here>
 #updateJSONURL="http://myurl.me/" #optional
 # A URL for the "homepage" for this mod, displayed in the mod UI
@@ -42,7 +44,7 @@ logoFile="assets/pyrofishinghelper/icon.png" #optional
 
 # The description text for the mod (multi line!) (#mandatory)
 description='''
-
+${modDescription}
 '''
 # A dependency - use the . to indicate dependency for a specific modid. Dependencies are optional.
 [[dependencies.pyrofishinghelper]] #optional

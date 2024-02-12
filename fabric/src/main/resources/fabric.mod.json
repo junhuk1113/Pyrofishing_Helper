@@ -4,9 +4,12 @@
   "version": "${version}",
 
   "name": "Pyrofishing Helper",
-  "description": "",
-  "authors": [],
-  "contact": {},
+  "description": "${modDescription}",
+  "authors": ["${modDescription}"],
+  "contributors": [
+    "${modCredits}"
+  ],
+  "contact": {"sources": "${githubUrl}"},
 
   "license": "MIT",
   "icon": "assets/pyrofishinghelper/icon.png",
