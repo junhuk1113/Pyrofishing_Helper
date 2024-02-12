@@ -4,8 +4,8 @@
   "version": "${version}",
 
   "name": "Pyrofishing Helper",
-  "description": "${modDescription}",
-  "authors": ["${modDescription}"],
+  "description": "마인플래닛 커스텀 물고기 등급별 텍스쳐, 토템 타이머 기능을 제공하는 모드입니다.",
+  "authors": ["${modAuthor}"],
   "contributors": [
     "${modCredits}"
   ],

@@ -27,7 +27,7 @@ credits="${modCredits}"
 # A URL to query for updates for this mod. See the JSON update specification <here>
 #updateJSONURL="http://myurl.me/" #optional
 # A URL for the "homepage" for this mod, displayed in the mod UI
-#displayURL="http://example.com/" #optional
+displayURL="${githubUrl}" #optional
 # A file name (in the root of the mod JAR) containing a logo for display
 logoFile="assets/pyrofishinghelper/icon.png" #optional
 # A text field displayed in the mod UI
@@ -44,7 +44,7 @@ logoFile="assets/pyrofishinghelper/icon.png" #optional
 
 # The description text for the mod (multi line!) (#mandatory)
 description='''
-${modDescription}
+마인플래닛 커스텀 물고기 등급별 텍스쳐, 토템 타이머 기능을 제공하는 모드입니다.
 '''
 # A dependency - use the . to indicate dependency for a specific modid. Dependencies are optional.
 [[dependencies.pyrofishinghelper]] #optional
