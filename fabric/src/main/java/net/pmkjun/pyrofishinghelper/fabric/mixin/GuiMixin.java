@@ -1,4 +1,4 @@
-package net.pmkjun.pyrofishinghelper.mixin;
+package net.pmkjun.pyrofishinghelper.fabric.mixin;
 
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.hud.InGameHud;

@@ -4,7 +4,8 @@
   "package": "net.pmkjun.pyrofishinghelper.forge.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
-    "ItemModelsMixin"
+    "ItemModelsMixin",
+    "GuiMixin"
   ],
   "client": [
   ],
