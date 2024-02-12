@@ -31,7 +31,7 @@ public class KeyMappings implements IKeyMappings {
         FishHelperClient client = FishHelperClient.getInstance();
 
         if(event.phase == TickEvent.Phase.END) {
-            while(openSettingScreen.isPressed()) {
+            while(openSettingScreen.wasPressed()) {
                 mc.setScreen(new ConfigScreen(mc.currentScreen));
             }
         }
