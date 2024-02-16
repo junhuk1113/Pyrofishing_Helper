@@ -17,8 +17,8 @@ import net.pmkjun.pyrofishinghelper.gui.screen.ConfigScreen;
 @Mod(FishHelperMod.MOD_ID)
 public class PyrofishingHelperForge {
     public PyrofishingHelperForge() {
-        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
         IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
+        eventBus.addListener(this::setup);
         FishItems.register();
         FishItems.ITEMS.register(eventBus);
 
