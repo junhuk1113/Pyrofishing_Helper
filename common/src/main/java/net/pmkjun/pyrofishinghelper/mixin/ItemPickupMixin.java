@@ -1,5 +1,8 @@
 package net.pmkjun.pyrofishinghelper.mixin;
 
+import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.item.TooltipContext;
+import net.minecraft.client.item.TooltipData;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -15,6 +18,9 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+import java.util.Optional;
+import java.util.Set;
+
 @Mixin(ScreenHandler.class)
 public class ItemPickupMixin {
 	private static final Logger LOGGER = LogManager.getLogger("ItemPickupMixin");
@@ -24,6 +30,9 @@ public class ItemPickupMixin {
 	private void onSlotClick(int slotIndex, int button, SlotActionType actionType, PlayerEntity player, CallbackInfo ci) {
 		if (player instanceof ClientPlayerEntity) {
 			if (!cursorStack.isEmpty()&&cursorStack.hasNbt()) {
+				System.out.println(cursorStack.getTooltip(MinecraftClient.getInstance().player, TooltipContext.BASIC));
+				//oh please
+				System.out.println("ok good");
 				if(cursorStack.getName().getString().equals("토템 발동")){
 					//LOGGER.info("토템 발동 버튼 눌림");
 					FishHelperClient.getInstance().updateLastTotemtime();
