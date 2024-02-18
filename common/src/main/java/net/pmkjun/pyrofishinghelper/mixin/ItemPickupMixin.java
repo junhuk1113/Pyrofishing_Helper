@@ -24,6 +24,7 @@ import java.util.Set;
 @Mixin(ScreenHandler.class)
 public class ItemPickupMixin {
 	private static final Logger LOGGER = LogManager.getLogger("ItemPickupMixin");
+	private final FishHelperClient client = FishHelperClient.getInstance();
 	@Shadow
 	private ItemStack cursorStack;
 	@Inject(method = "onSlotClick", at = @At("RETURN"))
@@ -35,8 +36,9 @@ public class ItemPickupMixin {
 				System.out.println("ok good");
 				if(cursorStack.getName().getString().equals("토템 발동")){
 					//LOGGER.info("토템 발동 버튼 눌림");
-					FishHelperClient.getInstance().updateLastTotemtime();
-					FishHelperClient.getInstance().configManage.save();
+					client.updateLastTotemtime();
+					client.configManage.save();
+					client.updateValueTotemtime();
 				}
 			}
 		}

@@ -19,19 +19,28 @@ public class totemCooltimeGui {
 
     private static final Identifier TOTEM_ICON = new Identifier("pyrofishinghelper","totem.png");
     private static final Identifier TOTEM_SLEEP_ICON = new Identifier("pyrofishinghelper","sleepingtotem3.png");
+    private int valueTotemActivetime, valueTotemCooldown;
 
     private Text lastTitle = null;
 
     public totemCooltimeGui(){
         this.mc = MinecraftClient.getInstance();
         this.client = FishHelperClient.getInstance();
+        this.valueTotemActivetime = this.client.data.valueTotemActivetime;
+        this.valueTotemCooldown = this.client.data.valueTotemCooldown;
+    }
+
+    public void updateValueTotemtime(int valueTotemActivetime, int valueTotemCooldown)
+    {
+        this.valueTotemActivetime = valueTotemActivetime;
+        this.valueTotemCooldown = valueTotemCooldown;
     }
 
     public void renderTick(DrawContext context, Timer timer){
         int activesecond,cooldownsecond;
 
-        activesecond = this.client.data.valueTotemActivetime * 60 - (int)timer.getDifference(this.client.data.lastTotemTime);
-        cooldownsecond = this.client.data.valueTotemCooldown * 60 - (int)timer.getDifference(this.client.data.lastTotemCooldownTime);
+        activesecond = this.valueTotemActivetime * 60 - (int)timer.getDifference(this.client.data.lastTotemTime);
+        cooldownsecond = this.valueTotemCooldown * 60 - (int)timer.getDifference(this.client.data.lastTotemCooldownTime);
 
         if (activesecond < 0)
             activesecond = 0;
