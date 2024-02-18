@@ -37,6 +37,9 @@ public class FishHelperClient {
         this.data.lastTotemTime = this.timer.getCurrentTime();
         this.data.lastTotemCooldownTime = this.timer.getCurrentTime()+(long)this.data.valueTotemActivetime * 60 * 1000;
     }
+    public void updateValueTotemtime(){
+        this.totemcooltimeGui.updateValueTotemtime(this.data.valueTotemActivetime, this.data.valueTotemCooldown);
+    }
 
     public String getUsername(){
         return this.mc.getSession().getUsername();
