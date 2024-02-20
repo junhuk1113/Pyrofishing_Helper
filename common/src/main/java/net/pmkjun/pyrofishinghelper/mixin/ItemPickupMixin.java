@@ -27,9 +27,7 @@ public class ItemPickupMixin {
 			if (!cursorStack.isEmpty()&&cursorStack.hasNbt()) {
 				if(cursorStack.getName().getString().equals("토템 발동")){
 					//LOGGER.info("토템 발동 버튼 눌림");
-					client.updateLastTotemtime();
-					client.configManage.save();
-					client.updateValueTotemtime();
+					client.updateTotemtime();
 				}
 			}
 		}

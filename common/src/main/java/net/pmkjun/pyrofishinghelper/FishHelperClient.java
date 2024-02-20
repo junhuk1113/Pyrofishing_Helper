@@ -33,12 +33,12 @@ public class FishHelperClient {
         this.totemcooltimeGui.renderTick(context,this.timer);
         this.timer.updateTime();
     }
-    public void updateLastTotemtime(){
+    public void updateTotemtime(){
         this.data.lastTotemTime = this.timer.getCurrentTime();
         this.data.lastTotemCooldownTime = this.timer.getCurrentTime()+(long)this.data.valueTotemActivetime * 60 * 1000;
-    }
-    public void updateValueTotemtime(){
-        this.totemcooltimeGui.updateValueTotemtime(this.data.valueTotemActivetime, this.data.valueTotemCooldown);
+        this.data.currentValueTotemActivetime = this.data.valueTotemActivetime;
+        this.data.currentValueTotemCooldown = this.data.valueTotemCooldown;
+        this.configManage.save();
     }
 
     public String getUsername(){
