@@ -36,9 +36,7 @@ public class ItemPickupMixin {
 				System.out.println("ok good");
 				if(cursorStack.getName().getString().equals("토템 발동")){
 					//LOGGER.info("토템 발동 버튼 눌림");
-					client.updateLastTotemtime();
-					client.configManage.save();
-					client.updateValueTotemtime();
+					client.updateTotemtime();
 				}
 			}
 		}

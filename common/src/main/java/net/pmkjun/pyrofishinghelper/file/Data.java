@@ -12,6 +12,8 @@ public class Data implements Serializable{
     public int valueTotemCooldown = 60;
     public int valueTotemActivetime = 5;
     public long valueCooldownReduction = 0;
+    public int currentValueTotemCooldown = 60;
+    public int currentValueTotemActivetime = 5;
     public long lastTotemTime=0;
     public long lastTotemCooldownTime = 0;
 
