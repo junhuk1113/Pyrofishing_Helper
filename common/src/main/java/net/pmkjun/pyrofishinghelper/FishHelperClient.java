@@ -12,6 +12,7 @@ public class FishHelperClient {
     private static FishHelperClient instance;
     public Data data;
     public ConfigManage configManage;
+    public double currentCooldownReduction;
 
     private final totemCooltimeGui totemcooltimeGui;
     private final Timer timer = new Timer();
@@ -25,6 +26,7 @@ public class FishHelperClient {
             this.configManage.save();
         }
         this.totemcooltimeGui = new totemCooltimeGui();
+        currentCooldownReduction = this.data.valueCooldownReduction;
     }
     public void init(){
 
