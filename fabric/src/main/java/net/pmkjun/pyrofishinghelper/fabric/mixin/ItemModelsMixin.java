@@ -39,6 +39,8 @@ public class ItemModelsMixin {
         String Itemname = null;
         String levelString;
         int levelInt;
+        double secondDouble;
+        long secondLong;
 
         cir.cancel();
 
@@ -47,20 +49,20 @@ public class ItemModelsMixin {
             if(Itemname == null)
                 Itemname = text.getString();
 
-            if(!Itemname.equals("지속시간 업그레이드")&&!Itemname.equals("쿨타임 감소"))
+            if(!Itemname.equals("지속시간 업그레이드")&&!Itemname.equals("쿨타임 감소")&&!Itemname.contains("토템 리더 |"))
                 break;
 
             if(text.getString().contains("현재 레벨 ➛ ")){
-               levelString = text.getString().replace("현재 레벨 ➛ ","");
-               levelInt = Integer.parseInt(levelString);
-               //System.out.println(Itemname +" : "+ levelString);
-               if(Itemname.equals("지속시간 업그레이드")){
-                   if(FishHelperClient.getInstance().data.valueTotemActivetime != ConvertActivateTime.asMinute(levelInt))
-                   {
-                       FishHelperClient.getInstance().data.valueTotemActivetime = ConvertActivateTime.asMinute(levelInt);
-                       FishHelperClient.getInstance().configManage.save();
-                   }
-               }
+                levelString = text.getString().replace("현재 레벨 ➛ ","");
+                levelInt = Integer.parseInt(levelString);
+                //System.out.println(Itemname +" : "+ levelString);
+                if(Itemname.equals("지속시간 업그레이드")){
+                    if(FishHelperClient.getInstance().data.valueTotemActivetime != ConvertActivateTime.asMinute(levelInt))
+                    {
+                        FishHelperClient.getInstance().data.valueTotemActivetime = ConvertActivateTime.asMinute(levelInt);
+                        FishHelperClient.getInstance().configManage.save();
+                    }
+                }
                 if(Itemname.equals("쿨타임 감소")){
                     if(FishHelperClient.getInstance().data.valueTotemCooldown != ConvertCooldown.asMinute(levelInt))
                     {
@@ -69,6 +71,17 @@ public class ItemModelsMixin {
                     }
                 }
             }
+            if(Itemname.contains("토템 리더 |") && text.getString().contains("효과|") && !text.getString().contains("다음 레벨 효과")){
+                levelString = text.getString().replace("효과| ", "");
+                levelString = levelString.replace(" 초 감소");
+                secondDouble = Double.parseDouble(levelString);
+                secondLong = (long)(secondDouble * 1000);
+                if(FishHelperClient.getInstance().data.valueCooldownReduction!=secondLong){
+                    FishHelperClient.getInstance().data.valueCooldownReduction = secondLong;
+                    FishHelperClient.getInstance().configManage.save();
+                }
+            }
+
         }
 
         if((changed_item = FishItems.getFishItem(stack))!=null) stack = new ItemStack((ItemConvertible) changed_item, stack.getCount());
