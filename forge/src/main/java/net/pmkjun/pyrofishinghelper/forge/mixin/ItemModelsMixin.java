@@ -47,7 +47,7 @@ public class ItemModelsMixin {
             if(Itemname == null)
                 Itemname = text.getString();
 
-            if(!Itemname.equals("지속시간 업그레이드")&&!Itemname.equals("쿨타임 감소"))
+            if(!Itemname.equals("지속시간 업그레이드")&&!Itemname.equals("쿨타임 감소")&&!Itemname.contains("토템 리더 |"))
                 break;
 
             if(text.getString().contains("현재 레벨 ➛ ")){
@@ -67,6 +67,15 @@ public class ItemModelsMixin {
                         FishHelperClient.getInstance().data.valueTotemCooldown = ConvertCooldown.asMinute(levelInt);
                         FishHelperClient.getInstance().configManage.save();
                     }
+                }
+            }
+            if(Itemname.contains("토템 리더 |") && text.getString().contains("효과|") && !text.getString().contains("다음 레벨 효과")){
+                levelString = text.getString().replace("효과| ", "");
+                levelString = levelString.replace(" 초 감소");
+                secondDouble = Double.parseDouble(levelString);
+                if(FishHelperClient.getInstance().data.valueCooldownReduction!=secondDouble){
+                    FishHelperClient.getInstance().data.valueCooldownReduction = secondDouble;
+                    FishHelperClient.getInstance().configManage.save();
                 }
             }
         }
