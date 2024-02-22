@@ -73,7 +73,7 @@ public class ItemModelsMixin {
             }
             if(Itemname.contains("토템 리더 |") && text.getString().contains("효과|") && !text.getString().contains("다음 레벨 효과")){
                 levelString = text.getString().replace("효과| ", "");
-                levelString = levelString.replace(" 초 감소");
+                levelString = levelString.replace(" 초 감소", "");
                 secondDouble = Double.parseDouble(levelString);
                 secondLong = (long)(secondDouble*1000);
                 if(FishHelperClient.getInstance().data.valueCooldownReduction!=secondLong){
