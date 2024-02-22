@@ -39,6 +39,8 @@ public class ItemModelsMixin {
         String Itemname = null;
         String levelString;
         int levelInt;
+        double secondDouble;
+        long secondLong;
 
         cir.cancel();
 
@@ -73,8 +75,9 @@ public class ItemModelsMixin {
                 levelString = text.getString().replace("효과| ", "");
                 levelString = levelString.replace(" 초 감소");
                 secondDouble = Double.parseDouble(levelString);
-                if(FishHelperClient.getInstance().data.valueCooldownReduction!=secondDouble){
-                    FishHelperClient.getInstance().data.valueCooldownReduction = secondDouble;
+                secondLong = (long)(secondDouble*1000);
+                if(FishHelperClient.getInstance().data.valueCooldownReduction!=secondLong){
+                    FishHelperClient.getInstance().data.valueCooldownReduction = secondLong;
                     FishHelperClient.getInstance().configManage.save();
                 }
             }
