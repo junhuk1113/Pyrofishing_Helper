@@ -11,9 +11,11 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(ChatHud.class)
 public abstract class ChatMixin {
+    private final FishHelperClient client = FishHelperClient.getInstance();
     @Inject(at = @At("RETURN"), method = "addMessage(Lnet/minecraft/text/Text;)V")
     private void addMessageMixin(Text message, CallbackInfo ci) {
-        if(FishHelperClient.getInstance().data.toggleChattinglog)
-            FishHelperMod.LOGGER.info(message.getString());
+        if(client.data.toggleChattinglog)
+            FishHelperMod.LOGGER.info(message.toString());
+
     }
 }
