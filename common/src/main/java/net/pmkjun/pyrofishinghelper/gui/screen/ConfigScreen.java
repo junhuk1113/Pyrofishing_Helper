@@ -11,6 +11,8 @@ import net.pmkjun.pyrofishinghelper.gui.widget.Slider;
 import net.pmkjun.pyrofishinghelper.util.ConvertActivateTime;
 import net.pmkjun.pyrofishinghelper.util.ConvertCooldown;
 
+import java.awt.*;
+
 
 public class ConfigScreen extends Screen {
 
@@ -27,6 +29,7 @@ public class ConfigScreen extends Screen {
 
     private ButtonWidget toggleCustomTextureButton;
     private ButtonWidget toggleChattinglogButton;
+    private ButtonWidget toggleFishCounterButton;
     private Slider timerXSlider;
     private Slider timerYSlider;
 
@@ -44,6 +47,7 @@ public class ConfigScreen extends Screen {
         String toggleTexture;
         String toggleMuter;
         String toggleLog;
+        String toggleFishCounter;
 
         if(client.data.toggleTotemtime){
             toggleTotem = "fishhelper.config.enable";
@@ -66,11 +70,17 @@ public class ConfigScreen extends Screen {
             toggleTexture = "fishhelper.config.customtexture_disable";
         }
 
-        if(client.data.toggleChattinglog){
+        /*if(client.data.toggleChattinglog){
             toggleLog = "fishhelper.config.chattinglog_enable";
         }
         else {
             toggleLog = "fishhelper.config.chattinglog_disable";
+        }*/
+        if(client.data.toggleFishCounter){
+            toggleFishCounter = "fishhelper.config.fishcounter_enable";
+        }
+        else {
+            toggleFishCounter = "fishhelper.config.fishcounter_disable";
         }
         activateTimeSlider = new Slider(10, 10, 150, 20, Text.literal(""),0,20,ConvertActivateTime.asLevel(this.client.data.valueTotemActivetime)){
             @Override
@@ -115,10 +125,15 @@ public class ConfigScreen extends Screen {
         }).dimensions(10,125, 150, 20).build();
         this.addDrawableChild(toggleMuteotherfishingbobberButton);*/
 
-        toggleChattinglogButton = ButtonWidget.builder(Text.translatable(toggleLog),button -> {
+        /*toggleChattinglogButton = ButtonWidget.builder(Text.translatable(toggleLog),button -> {
             onChattinglogPress();
         }).dimensions(10,125, 150, 20).build();
-        this.addDrawableChild(toggleChattinglogButton);
+        this.addDrawableChild(toggleChattinglogButton);*/
+
+        toggleFishCounterButton = ButtonWidget.builder(Text.translatable(toggleFishCounter),button -> {
+            toggleFishCounter();
+        }).dimensions(10,125, 150, 20).build();
+        this.addDrawableChild(toggleFishCounterButton);
 
         timerXSlider = new Slider(10,165,150,20,Text.literal("X : "),1,1000,this.client.data.Timer_xpos){
             @Override
@@ -230,5 +245,16 @@ public class ConfigScreen extends Screen {
         client.configManage.save();
     }
 
+    private void toggleFishCounter(){
+        if(client.data.toggleFishCounter){
+            toggleChattinglogButton.setMessage(Text.translatable("fishhelper.config.fishcounter_disable"));
+            client.data.toggleFishCounter = false;
+        }
+        else{
+            toggleChattinglogButton.setMessage(Text.translatable("fishhelper.config.fishcounter_enable"));
+            client.data.toggleFishCounter = true;
+        }
+        client.configManage.save();
+    }
 
 }

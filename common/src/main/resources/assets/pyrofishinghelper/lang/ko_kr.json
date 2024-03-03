@@ -18,6 +18,9 @@
   "fishhelper.config.customtexture_disable" : "물고기 등급별 텍스쳐 : 꺼짐",
   "fishhelper.config.chattinglog_enable" : "페더클 채팅 로그 : 켜짐",
   "fishhelper.config.chattinglog_disable" : "페더클 채팅 로그 : 꺼짐",
+  "fishhelper.config.fishcounter_enable" : "물고기 카운터 : 켜짐",
+  "fishhelper.config.fishcounter_disable" : "물고기 카운터 : 꺼짐",
+  "fishhelper.config.fishcounter_reset" : "물고기 카운터 초기화",
 
   "fishhelper.key.category" : "Pyro Fishing Helper",
   "fishhelper.key.open_settings" : "피시헬퍼 설정열기"

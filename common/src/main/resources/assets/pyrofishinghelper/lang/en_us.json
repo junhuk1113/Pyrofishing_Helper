@@ -18,6 +18,9 @@
   "fishhelper.config.customtexture_disable" : "Custom Texture : disable",
   "fishhelper.config.chattinglog_enable" : "Feather Client Chatlog : enable",
   "fishhelper.config.chattinglog_disable" : "Feather Client Chatlog : disable",
+  "fishhelper.config.fishcounter_enable" : "Fish Counter : enable",
+  "fishhelper.config.fishcounter_disable" : "Fish Counter : disable",
+  "fishhelper.config.fishcounter_reset" : "Fish Counter reset",
 
   "fishhelper.key.category" : "Pyro Fishing Helper",
   "fishhelper.key.open_settings" : "Open FishHelper setting"

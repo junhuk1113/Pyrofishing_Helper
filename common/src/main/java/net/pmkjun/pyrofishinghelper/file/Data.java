@@ -20,6 +20,8 @@ public class Data implements Serializable{
     public boolean toggleCustomTexture = true;
     public boolean toggleMuteotherfishingbobber = false;
     public boolean toggleChattinglog = false;
+    public boolean toggleFishCounter = false;
     public int Timer_xpos = 1;
     public int Timer_ypos = 1;
+    public int[] fish_Count = {0,0,0,0,0,0};
 }
