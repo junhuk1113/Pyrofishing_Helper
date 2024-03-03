@@ -247,11 +247,11 @@ public class ConfigScreen extends Screen {
 
     private void toggleFishCounter(){
         if(client.data.toggleFishCounter){
-            toggleChattinglogButton.setMessage(Text.translatable("fishhelper.config.fishcounter_disable"));
+            toggleFishCounterButton.setMessage(Text.translatable("fishhelper.config.fishcounter_disable"));
             client.data.toggleFishCounter = false;
         }
         else{
-            toggleChattinglogButton.setMessage(Text.translatable("fishhelper.config.fishcounter_enable"));
+            toggleFishCounterButton.setMessage(Text.translatable("fishhelper.config.fishcounter_enable"));
             client.data.toggleFishCounter = true;
         }
         client.configManage.save();
