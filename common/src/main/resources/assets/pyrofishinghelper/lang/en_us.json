@@ -21,6 +21,8 @@
   "fishhelper.config.fishcounter_enable" : "Fish Counter : enable",
   "fishhelper.config.fishcounter_disable" : "Fish Counter : disable",
   "fishhelper.config.fishcounter_reset" : "Fish Counter reset",
+  "fishhelper.config.totemtimer_setting" : "Fish Timer Setting",
+  "fishhelper.config.fishcounter_setting" : "Fish Counter Setting",
 
   "fishhelper.key.category" : "Pyro Fishing Helper",
   "fishhelper.key.open_settings" : "Open FishHelper setting"

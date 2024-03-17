@@ -41,6 +41,12 @@ public class FishHelperClient {
         this.configManage.save();
     }
 
+    public void resetFishCounter(){
+        for(int i = 0; i < this.data.fish_Count.length ; i++){
+            this.data.fish_Count[i] = 0;
+        }
+    }
+
     public String getUsername(){
         return this.mc.getSession().getUsername();
     }

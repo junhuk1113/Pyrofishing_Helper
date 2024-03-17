@@ -21,6 +21,8 @@
   "fishhelper.config.fishcounter_enable" : "물고기 카운터 : 켜짐",
   "fishhelper.config.fishcounter_disable" : "물고기 카운터 : 꺼짐",
   "fishhelper.config.fishcounter_reset" : "물고기 카운터 초기화",
+  "fishhelper.config.totemtimer_setting" : "토템 타이머 설정",
+  "fishhelper.config.fishcounter_setting" : "물고기 카운터 설정",
 
   "fishhelper.key.category" : "Pyro Fishing Helper",
   "fishhelper.key.open_settings" : "피시헬퍼 설정열기"
