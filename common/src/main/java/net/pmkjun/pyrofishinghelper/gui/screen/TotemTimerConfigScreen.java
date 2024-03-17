@@ -23,10 +23,11 @@ public class TotemTimerConfigScreen extends Screen {
     private Slider activateTimeSlider;
     private Slider cooldownSlider;
 
-    private ButtonWidget toggleCustomTextureButton;
-    private ButtonWidget toggleFishCounterButton;
     private Slider timerXSlider;
     private Slider timerYSlider;
+
+    private final int width;
+    private final int height;
 
     public TotemTimerConfigScreen(Screen parentScreen){
         super(Text.translatable("fishhelper.config.title"));
@@ -34,13 +35,13 @@ public class TotemTimerConfigScreen extends Screen {
         this.mc = MinecraftClient.getInstance();
         this.client = FishHelperClient.getInstance();
 
+        width = 160;
+        height = 132;
     }
 
     @Override
     protected void init() {
         String toggleTotem;
-        String toggleTexture;
-        String toggleFishCounter;
 
         if(client.data.toggleTotemtime){
             toggleTotem = "fishhelper.config.enable";
@@ -49,26 +50,7 @@ public class TotemTimerConfigScreen extends Screen {
             toggleTotem = "fishhelper.config.disable";
         }
 
-        if(client.data.toggleCustomTexture){
-            toggleTexture = "fishhelper.config.customtexture_enable";
-        }
-        else{
-            toggleTexture = "fishhelper.config.customtexture_disable";
-        }
-
-        /*if(client.data.toggleChattinglog){
-            toggleLog = "fishhelper.config.chattinglog_enable";
-        }
-        else {
-            toggleLog = "fishhelper.config.chattinglog_disable";
-        }*/
-        if(client.data.toggleFishCounter){
-            toggleFishCounter = "fishhelper.config.fishcounter_enable";
-        }
-        else {
-            toggleFishCounter = "fishhelper.config.fishcounter_disable";
-        }
-        activateTimeSlider = new Slider(10, 10, 150, 20, Text.literal(""),0,20,ConvertActivateTime.asLevel(this.client.data.valueTotemActivetime)){
+        activateTimeSlider = new Slider(getRegularX() + 5, getRegularY(), 150, 20, Text.literal(""),0,20,ConvertActivateTime.asLevel(this.client.data.valueTotemActivetime)){
             @Override
             protected void updateMessage() {
                 int level = getValueInt();
@@ -78,7 +60,7 @@ public class TotemTimerConfigScreen extends Screen {
                         Text.translatable("fishhelper.config.minute").getString()+")"));
             }
         };
-        cooldownSlider = new Slider(10, 35, 150, 20, Text.literal(""),0,10,ConvertCooldown.asLevel(this.client.data.valueTotemCooldown)){
+        cooldownSlider = new Slider(getRegularX() + 5, getRegularY() + (20 + 2), 150, 20, Text.literal(""),0,10,ConvertCooldown.asLevel(this.client.data.valueTotemCooldown)){
             @Override
             protected void updateMessage() {
                 int level = getValueInt();
@@ -92,36 +74,16 @@ public class TotemTimerConfigScreen extends Screen {
         this.addDrawableChild(cooldownSlider);
 
         //토템 쿨감시간
-        this.CooldownReduction_TextField = new TextFieldWidget(this.textRenderer,100,60,35,10,this.CooldownReduction_TextField,Text.translatable("fishhelper.config.cooldownreductionfield"));
+        this.CooldownReduction_TextField = new TextFieldWidget(this.textRenderer,getRegularX() + 5 + 90,getRegularY()+(20 + 2)*2,35,10,this.CooldownReduction_TextField,Text.translatable("fishhelper.config.cooldownreductionfield"));
         this.CooldownReduction_TextField.setText(Double.toString(this.client.data.valueCooldownReduction/(double)1000));
         this.addSelectableChild(this.CooldownReduction_TextField);
 
         toggleTotemButton = ButtonWidget.builder(Text.translatable(toggleTotem),button -> {
             toggleTotemtime();
-        }).dimensions(10,75, 150,20).build();
+        }).dimensions(getRegularX() + 5,getRegularY()+(20 + 2)*2+(10+4), 150,20).build();
         this.addDrawableChild(toggleTotemButton);
 
-        toggleCustomTextureButton = ButtonWidget.builder(Text.translatable(toggleTexture),button -> {
-            onCustomTexturePress();
-        }).dimensions(10,100,150,20).build();
-        this.addDrawableChild(toggleCustomTextureButton);
-
-        /*toggleMuteotherfishingbobberButton = ButtonWidget.builder(Text.translatable(toggleMuter),button -> {
-            toggleMuter();
-        }).dimensions(10,125, 150, 20).build();
-        this.addDrawableChild(toggleMuteotherfishingbobberButton);*/
-
-        /*toggleChattinglogButton = ButtonWidget.builder(Text.translatable(toggleLog),button -> {
-            onChattinglogPress();
-        }).dimensions(10,125, 150, 20).build();
-        this.addDrawableChild(toggleChattinglogButton);*/
-
-        toggleFishCounterButton = ButtonWidget.builder(Text.translatable(toggleFishCounter),button -> {
-            toggleFishCounter();
-        }).dimensions(10,125, 150, 20).build();
-        this.addDrawableChild(toggleFishCounterButton);
-
-        timerXSlider = new Slider(10,165,150,20,Text.literal("X : "),1,1000,this.client.data.Timer_xpos){
+        timerXSlider = new Slider(getRegularX() + 5,getRegularY()+(20 + 2)*4+(10+2),150,20,Text.literal("X : "),1,1000,this.client.data.Timer_xpos){
             @Override
             protected void applyValue() {
                 client.data.Timer_xpos = getValueInt();
@@ -129,7 +91,7 @@ public class TotemTimerConfigScreen extends Screen {
             }
         };
         this.addDrawableChild(timerXSlider);
-        timerYSlider = new Slider(10,190,150,20,Text.literal("Y : "),1,1000,this.client.data.Timer_ypos){
+        timerYSlider = new Slider(getRegularX() + 5,getRegularY()+(20 + 2)*5+(10+2),150,20,Text.literal("Y : "),1,1000,this.client.data.Timer_ypos){
             @Override
             protected void applyValue() {
                 client.data.Timer_ypos = getValueInt();
@@ -140,12 +102,12 @@ public class TotemTimerConfigScreen extends Screen {
 
         this.addDrawableChild(ButtonWidget.builder(Text.translatable("fishhelper.config.backbutton"),button -> {
             mc.setScreen(parentScreen);
-        }).dimensions(10,this.height-30, 50,20).build());
+        }).dimensions(10,super.height-30, 50,20).build());
 
         this.addDrawableChild(ButtonWidget.builder(Text.translatable("fishhelper.config.savebutton"),button -> {
             changeSetting();
             mc.setScreen(parentScreen);
-        }).dimensions(this.width-60,this.height-30, 50,20).build());
+        }).dimensions(super.width-60,super.height-30, 50,20).build());
     }
     @Override
     public boolean keyPressed(int keyCode, int scanCode, int modifiers) {
@@ -159,8 +121,8 @@ public class TotemTimerConfigScreen extends Screen {
 
     public void render(DrawContext context, int mouseX, int mouseY, float delta) {
         this.renderBackground(context);
-        context.drawTextWithShadow(this.textRenderer, Text.translatable("fishhelper.config.cooldownreductionfield"), 10, 60, 0xFFFFFF);
-        context.drawTextWithShadow(this.textRenderer,Text.translatable("fishhelper.config.changepos"),10,155,0xFFFFFF);
+        context.drawTextWithShadow(this.textRenderer, Text.translatable("fishhelper.config.cooldownreductionfield"), getRegularX() + 5, getRegularY()+(20 + 2)*2, 0xFFFFFF);
+        context.drawTextWithShadow(this.textRenderer,Text.translatable("fishhelper.config.changepos"),getRegularX() + 5,getRegularY()+(20 + 2)*4,0xFFFFFF);
 
         this.activateTimeSlider.render(context, mouseX, mouseY, delta);
         this.cooldownSlider.render(context, mouseX, mouseY, delta);
@@ -198,28 +160,12 @@ public class TotemTimerConfigScreen extends Screen {
         client.configManage.save();
     }
 
-    private void onCustomTexturePress(){
-        if(client.data.toggleCustomTexture){
-            toggleCustomTextureButton.setMessage(Text.translatable("fishhelper.config.customtexture_disable"));
-            client.data.toggleCustomTexture = false;
-        }
-        else{
-            toggleCustomTextureButton.setMessage(Text.translatable("fishhelper.config.customtexture_enable"));
-            client.data.toggleCustomTexture = true;
-        }
-        client.configManage.save();
+    int getRegularX() {
+        return  mc.getWindow().getScaledWidth() / 2 - width / 2;
     }
 
-    private void toggleFishCounter(){
-        if(client.data.toggleFishCounter){
-            toggleFishCounterButton.setMessage(Text.translatable("fishhelper.config.fishcounter_disable"));
-            client.data.toggleFishCounter = false;
-        }
-        else{
-            toggleFishCounterButton.setMessage(Text.translatable("fishhelper.config.fishcounter_enable"));
-            client.data.toggleFishCounter = true;
-        }
-        client.configManage.save();
+    int getRegularY() {
+        return mc.getWindow().getScaledHeight() / 2 - height / 2;
     }
 
 }
