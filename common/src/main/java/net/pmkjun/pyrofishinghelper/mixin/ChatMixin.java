@@ -21,6 +21,7 @@ public abstract class ChatMixin {
     private static final int EPIC = 3;
     private static final int LEGENDARY = 4;
     private static final int MYTHIC = 5;
+    private final MinecraftClient mc = MinecraftClient.getInstance();
 
     private final FishHelperClient client = FishHelperClient.getInstance();
     @Inject(at = @At("RETURN"), method = "addMessage(Lnet/minecraft/text/Text;)V")
@@ -65,8 +66,8 @@ public abstract class ChatMixin {
                 }
             }
             if(client.data.toggleFishCounter) {
-                assert MinecraftClient.getInstance().player != null;
-                MinecraftClient.getInstance().player.sendMessage(Text.literal(Arrays.toString(client.data.fish_Count)));
+                assert mc.player != null;
+                mc.player.sendMessage(Text.literal(Arrays.toString(client.data.fish_Count)));
             }
         }
     }

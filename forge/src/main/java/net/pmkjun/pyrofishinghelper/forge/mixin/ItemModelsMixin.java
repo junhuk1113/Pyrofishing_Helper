@@ -31,6 +31,7 @@ public class ItemModelsMixin {
     public BakedModel getModel(Item item) {
         return null;
     }
+    private MinecraftClient mc = MinecraftClient.getInstance();
 
     @Inject(method = {"getModel(Lnet/minecraft/item/ItemStack;)Lnet/minecraft/client/render/model/BakedModel;"},at = {@At("TAIL")}, cancellable = true)
     public void getModelMixin(ItemStack stack, CallbackInfoReturnable<BakedModel> cir){
@@ -44,7 +45,7 @@ public class ItemModelsMixin {
 
         cir.cancel();
 
-        ItemText = stack.getTooltip(MinecraftClient.getInstance().player, TooltipContext.BASIC);
+        ItemText = stack.getTooltip(mc.player, TooltipContext.BASIC);
         for(Text text : ItemText){
             if(Itemname == null)
                 Itemname = text.getString();

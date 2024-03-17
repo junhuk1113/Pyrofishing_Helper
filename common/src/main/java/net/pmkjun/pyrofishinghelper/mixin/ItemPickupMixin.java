@@ -20,15 +20,16 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class ItemPickupMixin {
 	private static final Logger LOGGER = LogManager.getLogger("ItemPickupMixin");
 	private final FishHelperClient client = FishHelperClient.getInstance();
+	private final MinecraftClient mc = MinecraftClient.getInstance();
 	@Shadow
 	private ItemStack cursorStack;
 	@Inject(method = "onSlotClick", at = @At("RETURN"))
 	private void onSlotClick(int slotIndex, int button, SlotActionType actionType, PlayerEntity player, CallbackInfo ci) {
 		if (player instanceof ClientPlayerEntity) {
 			if (!cursorStack.isEmpty()&&cursorStack.hasNbt()) {
-				System.out.println(cursorStack.getTooltip(MinecraftClient.getInstance().player, TooltipContext.BASIC));
+				System.out.println(cursorStack.getTooltip(mc.player, TooltipContext.BASIC));
 				if(cursorStack.getName().getString().equals("토템 발동")){
-					//LOGGER.info("토템 발동 버튼 눌림");
+					LOGGER.info("토템 발동 버튼 눌림");
 					client.updateTotemtime();
 				}
 			}
