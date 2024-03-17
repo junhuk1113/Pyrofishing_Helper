@@ -5,7 +5,6 @@ import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.option.KeyBinding;
-import net.pmkjun.pyrofishinghelper.FishHelperClient;
 import net.pmkjun.pyrofishinghelper.gui.screen.ConfigScreen;
 import net.pmkjun.pyrofishinghelper.input.IKeyMappings;
 
@@ -14,7 +13,6 @@ public class KeyMappings implements IKeyMappings {
 
     public void register() {
         MinecraftClient mc = MinecraftClient.getInstance();
-        FishHelperClient client = FishHelperClient.getInstance();
         register(openSettingScreen, () -> mc.setScreen((Screen)new ConfigScreen(mc.currentScreen)));
     }
 

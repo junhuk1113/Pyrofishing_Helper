@@ -11,9 +11,6 @@ import net.pmkjun.pyrofishinghelper.gui.widget.Slider;
 import net.pmkjun.pyrofishinghelper.util.ConvertActivateTime;
 import net.pmkjun.pyrofishinghelper.util.ConvertCooldown;
 
-import java.awt.*;
-
-
 public class ConfigScreen extends Screen {
 
     private MinecraftClient mc;
@@ -22,13 +19,11 @@ public class ConfigScreen extends Screen {
     private TextFieldWidget CooldownReduction_TextField;
 
     private ButtonWidget toggleTotemButton;
-    private ButtonWidget toggleMuteotherfishingbobberButton;
 
     private Slider activateTimeSlider;
     private Slider cooldownSlider;
 
     private ButtonWidget toggleCustomTextureButton;
-    private ButtonWidget toggleChattinglogButton;
     private ButtonWidget toggleFishCounterButton;
     private Slider timerXSlider;
     private Slider timerYSlider;
@@ -45,8 +40,6 @@ public class ConfigScreen extends Screen {
     protected void init() {
         String toggleTotem;
         String toggleTexture;
-        String toggleMuter;
-        String toggleLog;
         String toggleFishCounter;
 
         if(client.data.toggleTotemtime){
@@ -54,13 +47,6 @@ public class ConfigScreen extends Screen {
         }
         else{
             toggleTotem = "fishhelper.config.disable";
-        }
-
-        if(client.data.toggleMuteotherfishingbobber){
-            toggleMuter = "fishhelper.config.muter_enable";
-        }
-        else{
-            toggleMuter = "fishhelper.config.muter_disable";
         }
 
         if(client.data.toggleCustomTexture){
@@ -211,17 +197,7 @@ public class ConfigScreen extends Screen {
         }
         client.configManage.save();
     }
-    private void toggleMuter(){
-        if(client.data.toggleMuteotherfishingbobber){
-            toggleMuteotherfishingbobberButton.setMessage(Text.translatable("fishhelper.config.muter_disable"));
-            client.data.toggleMuteotherfishingbobber = false;
-        }
-        else{
-            toggleMuteotherfishingbobberButton.setMessage(Text.translatable("fishhelper.config.muter_enable"));
-            client.data.toggleMuteotherfishingbobber = true;
-        }
-        client.configManage.save();
-    }
+
     private void onCustomTexturePress(){
         if(client.data.toggleCustomTexture){
             toggleCustomTextureButton.setMessage(Text.translatable("fishhelper.config.customtexture_disable"));
@@ -230,17 +206,6 @@ public class ConfigScreen extends Screen {
         else{
             toggleCustomTextureButton.setMessage(Text.translatable("fishhelper.config.customtexture_enable"));
             client.data.toggleCustomTexture = true;
-        }
-        client.configManage.save();
-    }
-    private void onChattinglogPress(){
-        if(client.data.toggleChattinglog){
-            toggleChattinglogButton.setMessage(Text.translatable("fishhelper.config.chattinglog_disable"));
-            client.data.toggleChattinglog = false;
-        }
-        else{
-            toggleChattinglogButton.setMessage(Text.translatable("fishhelper.config.chattinglog_enable"));
-            client.data.toggleChattinglog = true;
         }
         client.configManage.save();
     }

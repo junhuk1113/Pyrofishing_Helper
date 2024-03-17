@@ -1,6 +1,5 @@
 package net.pmkjun.pyrofishinghelper.forge;
 
-import net.minecraft.client.gui.screen.Screen;
 import net.minecraftforge.client.ConfigScreenHandler;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.ModLoadingContext;
@@ -10,8 +9,6 @@ import net.pmkjun.pyrofishinghelper.FishHelperMod;
 import net.minecraftforge.fml.common.Mod;
 import net.pmkjun.pyrofishinghelper.forge.input.KeyMappings;
 import net.pmkjun.pyrofishinghelper.forge.item.FishItems;
-
-import net.minecraftforge.client.ConfigScreenHandler.ConfigScreenFactory;
 import net.pmkjun.pyrofishinghelper.gui.screen.ConfigScreen;
 
 @Mod(FishHelperMod.MOD_ID)
