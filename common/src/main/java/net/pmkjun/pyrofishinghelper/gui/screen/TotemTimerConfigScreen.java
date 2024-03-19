@@ -41,6 +41,7 @@ public class TotemTimerConfigScreen extends Screen {
 
     @Override
     protected void init() {
+        super.init();
         String toggleTotem;
 
         if(client.data.toggleTotemtime){
@@ -121,7 +122,7 @@ public class TotemTimerConfigScreen extends Screen {
 
     public void render(DrawContext context, int mouseX, int mouseY, float delta) {
         this.renderBackground(context);
-        context.drawTextWithShadow(this.textRenderer, Text.translatable("fishhelper.config.cooldownreductionfield"), getRegularX() + 5, getRegularY()+(20 + 2)*2, 0xFFFFFF);
+        context.drawTextWithShadow(this.textRenderer, Text.translatable("fishhelper.config.cooldownreductionfield"), getRegularX() + 5, getRegularY()+(20 + 2)*2+2, 0xFFFFFF);
         context.drawTextWithShadow(this.textRenderer,Text.translatable("fishhelper.config.changepos"),getRegularX() + 5,getRegularY()+(20 + 2)*4,0xFFFFFF);
 
         this.activateTimeSlider.render(context, mouseX, mouseY, delta);

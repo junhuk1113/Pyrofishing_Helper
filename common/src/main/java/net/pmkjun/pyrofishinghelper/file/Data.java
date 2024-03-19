@@ -21,7 +21,12 @@ public class Data implements Serializable{
     public boolean toggleMuteotherfishingbobber = false;
     public boolean toggleChattinglog = false;
     public boolean toggleFishCounter = false;
+    public boolean toggleGradeProbability = false;
+    public boolean toggleEarningCalculator = false;
+
     public int Timer_xpos = 1;
     public int Timer_ypos = 1;
+    public int Counter_xpos = 1;
+    public int Counter_ypos = 1;
     public int[] fish_Count = {0,0,0,0,0,0};
 }

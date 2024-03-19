@@ -11,7 +11,7 @@
   "fishhelper.config.minute" : "분",
   "fishhelper.config.timerleft" : "x : 왼쪽",
   "fishhelper.config.timerright": "x : 오른쪽",
-  "fishhelper.config.changepos" : "토템 타이머 위치설정",
+  "fishhelper.config.changepos" : "위치설정",
   "fishhelper.config.muter_enable" : "다른 사람 낚시찌 소리 음소거 : 켜짐",
   "fishhelper.config.muter_disable" : "다른 사람 낚시찌 소리 음소거 : 꺼짐",
   "fishhelper.config.customtexture_enable" : "물고기 등급별 텍스쳐 : 켜짐",
@@ -23,6 +23,10 @@
   "fishhelper.config.fishcounter_reset" : "물고기 카운터 초기화",
   "fishhelper.config.totemtimer_setting" : "토템 타이머 설정",
   "fishhelper.config.fishcounter_setting" : "물고기 카운터 설정",
+  "fishhelper.config.fishcounter_setting.togglegradeprobability_enable" : "등급별 확률 : 켜짐",
+  "fishhelper.config.fishcounter_setting.togglegradeprobability_disable" : "등급별 확률 : 꺼짐",
+  "fishhelper.config.fishcounter_setting.toggleEarningCalculator_enable" : "수익 계산기 : 켜짐",
+  "fishhelper.config.fishcounter_setting.toggleEarningCalculator_disable" : "수익 계산기 : 꺼짐",
 
   "fishhelper.key.category" : "Pyro Fishing Helper",
   "fishhelper.key.open_settings" : "피시헬퍼 설정열기"

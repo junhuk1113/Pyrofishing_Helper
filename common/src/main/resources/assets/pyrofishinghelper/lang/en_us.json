@@ -11,7 +11,7 @@
   "fishhelper.config.minute" : "minute",
   "fishhelper.config.timerleft" : "x : left",
   "fishhelper.config.timerright": "x : right",
-  "fishhelper.config.changepos" : "Set position Totem timer",
+  "fishhelper.config.changepos" : "Set position",
   "fishhelper.config.muter_enable" : "Mute other Fishing sound : enable",
   "fishhelper.config.muter_disable" : "Mute other Fishing sound : disable",
   "fishhelper.config.customtexture_enable" : "Custom Texture : enable",
@@ -23,7 +23,11 @@
   "fishhelper.config.fishcounter_reset" : "Fish Counter reset",
   "fishhelper.config.totemtimer_setting" : "Fish Timer Setting",
   "fishhelper.config.fishcounter_setting" : "Fish Counter Setting",
-
+  "fishhelper.config.fishcounter_setting.togglegradeprobability_enable" : "Grade Probability : ON",
+  "fishhelper.config.fishcounter_setting.togglegradeprobability_disable" : "Grade Probability : OFF",
+  "fishhelper.config.fishcounter_setting.toggleEarningCalculator_enable" : "EarningCalculator : ON",
+  "fishhelper.config.fishcounter_setting.toggleEarningCalculator_disable" : "Grade Probability : OFF",
+  
   "fishhelper.key.category" : "Pyro Fishing Helper",
   "fishhelper.key.open_settings" : "Open FishHelper setting"
 }
