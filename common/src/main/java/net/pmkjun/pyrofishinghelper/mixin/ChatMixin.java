@@ -6,6 +6,8 @@ import net.minecraft.text.Text;
 import net.pmkjun.pyrofishinghelper.FishHelperClient;
 import net.pmkjun.pyrofishinghelper.FishHelperMod;
 import net.pmkjun.pyrofishinghelper.item.FishItemList;
+import net.pmkjun.pyrofishinghelper.util.Earning;
+
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -68,7 +70,8 @@ public abstract class ChatMixin {
             if(client.data.toggleFishCounter) {
                 assert mc.player != null;
                 mc.player.sendMessage(Text.literal(Arrays.toString(client.data.fish_Count)));
-                //
+                mc.player.sendMessage(Text.literal("번 수익 : "+Earning.getMoney()));
+                mc.player.sendMessage(Text.literal("번 엔트로피 : "+Earning.getEntropy()));
             }
         }
     }
