@@ -6,7 +6,7 @@ public class Earning {
     private static final FishHelperClient client = FishHelperClient.getInstance();
     public static double getMoney(){ // 6 > 11 > 15 > 19 > 25
         double sum = 0;
-        int cost[] = {80,270,900,2700};
+        int cost[] = {40,270,900,2700};
         double coefficient[] = {1, 1.06, 1.11, 1.15, 1.19, 1.25};
 
         for(int i = 0 ; i < 4 ; i++)
