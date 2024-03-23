@@ -68,6 +68,7 @@ public abstract class ChatMixin {
             if(client.data.toggleFishCounter) {
                 assert mc.player != null;
                 mc.player.sendMessage(Text.literal(Arrays.toString(client.data.fish_Count)));
+                //
             }
         }
     }

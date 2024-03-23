@@ -16,6 +16,8 @@ public class Data implements Serializable{
     public int currentValueTotemActivetime = 5;
     public long lastTotemTime=0;
     public long lastTotemCooldownTime = 0;
+    public int valueSolarRage = 0; // 6 > 11 > 15 > 19 > 25
+    public int valuePrecisionCutting = 0; // 8%>11%>15%>20%>30%>45%>60%>70%
 
     public boolean toggleCustomTexture = true;
     public boolean toggleMuteotherfishingbobber = false;
@@ -23,6 +25,7 @@ public class Data implements Serializable{
     public boolean toggleFishCounter = false;
     public boolean toggleGradeProbability = false;
     public boolean toggleEarningCalculator = false;
+    public boolean toggleLog = false;
 
     public int Timer_xpos = 1;
     public int Timer_ypos = 1;
