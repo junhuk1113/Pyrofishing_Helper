@@ -69,8 +69,8 @@ public abstract class ChatMixin {
             if(client.data.toggleFishCounter) {
                 assert mc.player != null;
                 mc.player.sendMessage(Text.literal(Arrays.toString(client.data.fish_Count)));
-                mc.player.sendMessage(Text.literal("번 수익 : "+Earning.getMoney()));
-                mc.player.sendMessage(Text.literal("번 엔트로피 : "+Earning.getEntropy()));
+                mc.player.sendMessage(Text.literal("번 수익 : "+Earning.getMoney()+"원("+Earning.getEntropy()+"엔트로피)"));
+                mc.player.sendMessage(Text.literal("보주 : S("+client.data.valueSolarRage+") P("+client.data.valuePrecisionCutting+")"));
             }
         }
     }
