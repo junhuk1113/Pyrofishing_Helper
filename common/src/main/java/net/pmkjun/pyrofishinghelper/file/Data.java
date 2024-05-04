@@ -1,6 +1,8 @@
 package net.pmkjun.pyrofishinghelper.file;
 
 import java.io.Serializable;
+
+import net.pmkjun.pyrofishinghelper.util.FishCounterMode;
 public class Data implements Serializable{
     public String userName;
 
@@ -26,10 +28,11 @@ public class Data implements Serializable{
     public boolean toggleGradeProbability = false;
     public boolean toggleEarningCalculator = false;
     public boolean toggleLog = false;
+    public FishCounterMode toggleFishCounterMode = FishCounterMode.PERCENTAGE;
 
     public int Timer_xpos = 1;
     public int Timer_ypos = 1;
-    public int Counter_xpos = 1;
+    public int Counter_xpos = 1000;
     public int Counter_ypos = 1;
     public int[] fish_Count = {0,0,0,0,0,0};
 }

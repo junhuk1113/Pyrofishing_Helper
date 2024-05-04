@@ -29,43 +29,53 @@ public abstract class ChatMixin {
     private void addMessageMixin(Text message, CallbackInfo ci) {
         if(client.data.toggleChattinglog)
             FishHelperMod.LOGGER.info(message.getString());
-        if(message.getString().contains("\uE2F8 ") && message.getString().contains("을 낚았습니다!")){
-            for(String fishName : FishItemList.COMMMON_FISH_LIST){
+        
+        if((message.getString().contains("\uE2F8 ") && message.getString().contains("을 낚았습니다!"))||
+        (message.getString().contains("\uE2F8 ") && message.getString().contains("로 변환되었습니다."))){
+        FISH:
+        {
+            for(String fishName : FishItemList.MYTHIC_FISH_LIST){
                 if(message.getString().contains(fishName)){
-                    this.client.data.fish_Count[COMMON]++;
+                    this.client.data.fish_Count[MYTHIC]++;
                     this.client.configManage.save();
-                }
-            }
-            for(String fishName : FishItemList.UNCOMMON_FISH_LIST){
-                if(message.getString().contains(fishName)){
-                    this.client.data.fish_Count[UNCOMMON]++;
-                    this.client.configManage.save();
-                }
-            }
-            for(String fishName : FishItemList.RARE_FISH_LIST){
-                if(message.getString().contains(fishName)){
-                    this.client.data.fish_Count[RARE]++;
-                    this.client.configManage.save();
-                }
-            }
-            for(String fishName : FishItemList.EPIC_FISH_LIST){
-                if(message.getString().contains(fishName)){
-                    this.client.data.fish_Count[EPIC]++;
-                    this.client.configManage.save();
+                    break FISH;
                 }
             }
             for(String fishName : FishItemList.LEGENDARY_FISH_LIST){
                 if(message.getString().contains(fishName)){
                     this.client.data.fish_Count[LEGENDARY]++;
                     this.client.configManage.save();
+                    break FISH;
                 }
             }
-            for(String fishName : FishItemList.MYTHIC_FISH_LIST){
+            for(String fishName : FishItemList.EPIC_FISH_LIST){
                 if(message.getString().contains(fishName)){
-                    this.client.data.fish_Count[MYTHIC]++;
+                    this.client.data.fish_Count[EPIC]++;
+                    this.client.configManage.save();
+                    break FISH;
+                }
+            }
+            for(String fishName : FishItemList.RARE_FISH_LIST){
+                if(message.getString().contains(fishName)){
+                    this.client.data.fish_Count[RARE]++;
+                    this.client.configManage.save();
+                    break FISH;
+                }
+            }
+            for(String fishName : FishItemList.UNCOMMON_FISH_LIST){
+                if(message.getString().contains(fishName)){
+                    this.client.data.fish_Count[UNCOMMON]++;
+                    this.client.configManage.save();
+                    break FISH;
+                }
+            }
+            for(String fishName : FishItemList.COMMMON_FISH_LIST){
+                if(message.getString().contains(fishName)){
+                    this.client.data.fish_Count[COMMON]++;
                     this.client.configManage.save();
                 }
             }
+        }
             if(client.data.toggleFishCounter) {
                 assert mc.player != null;
                 mc.player.sendMessage(Text.literal(Arrays.toString(client.data.fish_Count)));
