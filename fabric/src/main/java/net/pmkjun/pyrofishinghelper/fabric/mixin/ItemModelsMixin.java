@@ -92,7 +92,7 @@ public class ItemModelsMixin {
         ItemStack mainhandStack = mc.player.getMainHandStack();
         if(mainhandStack!=previousMainhandStack){
             previousMainhandStack = mainhandStack;
-            mc.player.sendMessage(Text.literal("MainhandStack 변경됨 : "+mainhandStack.getItem().getTranslationKey()));
+            //mc.player.sendMessage(Text.literal("MainhandStack 변경됨 : "+mainhandStack.getItem().getTranslationKey()));
 
             if(mainhandStack.getItem().getTranslationKey().equals("item.minecraft.fishing_rod")){
                 FishingRod.updateSpec(mainhandStack);

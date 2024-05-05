@@ -27,6 +27,9 @@
   "fishhelper.config.fishcounter_setting.togglegradeprobability_disable" : "등급별 확률 : 꺼짐",
   "fishhelper.config.fishcounter_setting.toggleEarningCalculator_enable" : "수익 계산기 : 켜짐",
   "fishhelper.config.fishcounter_setting.toggleEarningCalculator_disable" : "수익 계산기 : 꺼짐",
+  "fishhelper.config.fishcounter_setting.mode.percentage" : "표시 값 : 확률",
+  "fishhelper.config.fishcounter_setting.mode.count" : "표시 값 : 개수",
+  "fishhelper.config.fishcounter_setting.mode.all" : "표시 값 : 확률(개수)",
 
   "fishhelper.key.category" : "Pyro Fishing Helper",
   "fishhelper.key.open_settings" : "피시헬퍼 설정열기"

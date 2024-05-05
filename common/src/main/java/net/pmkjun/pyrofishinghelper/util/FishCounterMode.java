@@ -1,5 +1,5 @@
 package net.pmkjun.pyrofishinghelper.util;
 
 public enum FishCounterMode {
-    PERCENTAGE, COUNT
+    PERCENTAGE, COUNT, ALL
 }

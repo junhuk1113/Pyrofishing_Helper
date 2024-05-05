@@ -27,6 +27,9 @@
   "fishhelper.config.fishcounter_setting.togglegradeprobability_disable" : "Grade Probability : OFF",
   "fishhelper.config.fishcounter_setting.toggleEarningCalculator_enable" : "EarningCalculator : ON",
   "fishhelper.config.fishcounter_setting.toggleEarningCalculator_disable" : "Grade Probability : OFF",
+  "fishhelper.config.fishcounter_setting.mode.percentage" : "Mode : percentage",
+  "fishhelper.config.fishcounter_setting.mode.count" : "Mode : count",
+  "fishhelper.config.fishcounter_setting.mode.all" : "Mode : all",
   
   "fishhelper.key.category" : "Pyro Fishing Helper",
   "fishhelper.key.open_settings" : "Open FishHelper setting"

@@ -7,13 +7,14 @@ import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.text.Text;
 import net.pmkjun.pyrofishinghelper.FishHelperClient;
 import net.pmkjun.pyrofishinghelper.gui.widget.Slider;
+import net.pmkjun.pyrofishinghelper.util.FishCounterMode;
 
 public class FishCounterConfigScreen extends Screen{
     private MinecraftClient mc;
     private FishHelperClient client;
     private final Screen parentScreen;
     private ButtonWidget toggleFishCounterButton;
-    private ButtonWidget toggleGradeProbabilityButton;
+    private ButtonWidget toggleCounterModeButton;
     private ButtonWidget toggleEarningCalculatorButton;
 
     private Slider counterXSlider;
@@ -22,7 +23,7 @@ public class FishCounterConfigScreen extends Screen{
     private final int width;
     private final int height;
 
-    String toggleFishCounter, toggleGradeProbability, toggleEarningCalculator, resetCounter;
+    String toggleFishCounter, toggleCounterMode, toggleEarningCalculator, resetCounter;
 
     public FishCounterConfigScreen(Screen parentScreen) {
         super(Text.translatable("fishhelper.config.title"));
@@ -44,10 +45,10 @@ public class FishCounterConfigScreen extends Screen{
         }).dimensions(getRegularX() + 5, getRegularY(), 150, 20).build();
         this.addDrawableChild(toggleFishCounterButton);
 
-        toggleGradeProbabilityButton = ButtonWidget.builder(Text.translatable(toggleGradeProbability),button -> {
-            toggleGradeProbability();
+        toggleCounterModeButton = ButtonWidget.builder(Text.translatable(toggleCounterMode),button -> {
+            toggleCounterMode();
         }).dimensions(getRegularX() + 5, getRegularY()+(20+2), 150, 20).build();
-        this.addDrawableChild(toggleGradeProbabilityButton);
+        this.addDrawableChild(toggleCounterModeButton);
 
         toggleEarningCalculatorButton = ButtonWidget.builder(Text.translatable(toggleEarningCalculator), button ->{
             toggleEarningCalculator();
@@ -104,14 +105,18 @@ public class FishCounterConfigScreen extends Screen{
         client.configManage.save();
     }
     
-    private void toggleGradeProbability(){
-        if(client.data.toggleGradeProbability){
-            toggleGradeProbabilityButton.setMessage(Text.translatable("fishhelper.config.fishcounter_setting.togglegradeprobability_disable"));
-            client.data.toggleGradeProbability = false;
+    private void toggleCounterMode(){
+        if(client.data.toggleCounterMode == FishCounterMode.PERCENTAGE){
+            toggleCounterModeButton.setMessage(Text.translatable("fishhelper.config.fishcounter_setting.mode.count"));
+            client.data.toggleCounterMode = FishCounterMode.COUNT;
         }
-        else{
-            toggleGradeProbabilityButton.setMessage(Text.translatable("fishhelper.config.fishcounter_setting.togglegradeprobability_enable"));
-            client.data.toggleGradeProbability = true;
+        else if(client.data.toggleCounterMode == FishCounterMode.COUNT){
+            toggleCounterModeButton.setMessage(Text.translatable("fishhelper.config.fishcounter_setting.mode.all"));
+            client.data.toggleCounterMode = FishCounterMode.ALL;
+        }
+        else if(client.data.toggleCounterMode == FishCounterMode.ALL){
+            toggleCounterModeButton.setMessage(Text.translatable("fishhelper.config.fishcounter_setting.mode.percentage"));
+            client.data.toggleCounterMode = FishCounterMode.PERCENTAGE;
         }
         client.configManage.save();
     }
@@ -136,11 +141,14 @@ public class FishCounterConfigScreen extends Screen{
             toggleFishCounter = "fishhelper.config.fishcounter_disable";
         }
 
-        if(client.data.toggleGradeProbability){
-            toggleGradeProbability = "fishhelper.config.fishcounter_setting.togglegradeprobability_enable";
+        if(client.data.toggleCounterMode == FishCounterMode.PERCENTAGE){
+            toggleCounterMode = "fishhelper.config.fishcounter_setting.mode.percentage";
+        }
+        else if(client.data.toggleCounterMode == FishCounterMode.COUNT){
+            toggleCounterMode = "fishhelper.config.fishcounter_setting.mode.count";
         }
         else{
-            toggleGradeProbability = "fishhelper.config.fishcounter_setting.togglegradeprobability_disable";
+            toggleCounterMode = "fishhelper.config.fishcounter_setting.mode.all";
         }
 
         if(client.data.toggleEarningCalculator){

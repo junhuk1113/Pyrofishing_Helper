@@ -43,7 +43,7 @@ public class ConfigScreen extends Screen{
         }).dimensions(getRegularX() + 5, getRegularY() + 5, 150, 20).build());
 
         this.addDrawableChild(ButtonWidget.builder(Text.translatable("fishhelper.config.fishcounter_setting"), btn -> {
-            mc.setScreen(new FishCounterConfigScreen(parentScreen));
+            mc.setScreen(new FishCounterConfigScreen(mc.currentScreen));
         }).dimensions(getRegularX() + 5, getRegularY() + 5 + 20 + 2, 150, 20).build());
 
         toggleCustomTextureButton = ButtonWidget.builder(Text.translatable(toggleTexture), btn -> {

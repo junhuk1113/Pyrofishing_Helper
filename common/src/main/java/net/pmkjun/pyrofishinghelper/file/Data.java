@@ -28,7 +28,7 @@ public class Data implements Serializable{
     public boolean toggleGradeProbability = false;
     public boolean toggleEarningCalculator = false;
     public boolean toggleLog = false;
-    public FishCounterMode toggleFishCounterMode = FishCounterMode.PERCENTAGE;
+    public FishCounterMode toggleCounterMode = FishCounterMode.PERCENTAGE;
 
     public int Timer_xpos = 1;
     public int Timer_ypos = 1;
