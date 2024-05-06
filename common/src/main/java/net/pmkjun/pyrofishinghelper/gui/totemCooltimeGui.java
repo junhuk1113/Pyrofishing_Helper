@@ -20,8 +20,6 @@ public class totemCooltimeGui {
     private static final Identifier TOTEM_ICON = new Identifier("pyrofishinghelper","totem.png");
     private static final Identifier TOTEM_SLEEP_ICON = new Identifier("pyrofishinghelper","sleepingtotem3.png");
 
-    private Text lastTitle = null;
-
     public totemCooltimeGui(){
         this.mc = MinecraftClient.getInstance();
         this.client = FishHelperClient.getInstance();

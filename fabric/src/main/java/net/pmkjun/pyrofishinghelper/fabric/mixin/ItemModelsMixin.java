@@ -13,6 +13,8 @@ import net.pmkjun.pyrofishinghelper.FishHelperClient;
 import net.pmkjun.pyrofishinghelper.fabric.item.FishItems;
 import net.pmkjun.pyrofishinghelper.util.ConvertActivateTime;
 import net.pmkjun.pyrofishinghelper.util.ConvertCooldown;
+import net.pmkjun.pyrofishinghelper.util.FishingRod;
+
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -32,6 +34,9 @@ public class ItemModelsMixin {
         return null;
     }
 
+    private MinecraftClient mc = MinecraftClient.getInstance();
+    private ItemStack previousMainhandStack;
+
     @Inject(method = {"getModel(Lnet/minecraft/item/ItemStack;)Lnet/minecraft/client/render/model/BakedModel;"},at = {@At("TAIL")}, cancellable = true)
     public void getModelMixin(ItemStack stack, CallbackInfoReturnable<BakedModel> cir){
         Item changed_item;
@@ -44,7 +49,7 @@ public class ItemModelsMixin {
 
         cir.cancel();
 
-        ItemText = stack.getTooltip(MinecraftClient.getInstance().player, TooltipContext.BASIC);
+        ItemText = stack.getTooltip(mc.player, TooltipContext.BASIC);
         for(Text text : ItemText){
             if(Itemname == null)
                 Itemname = text.getString();
@@ -81,7 +86,19 @@ public class ItemModelsMixin {
                     FishHelperClient.getInstance().configManage.save();
                 }
             }
+
         }
+
+        ItemStack mainhandStack = mc.player.getMainHandStack();
+        if(mainhandStack!=previousMainhandStack){
+            previousMainhandStack = mainhandStack;
+            //mc.player.sendMessage(Text.literal("MainhandStack 변경됨 : "+mainhandStack.getItem().getTranslationKey()));
+
+            if(mainhandStack.getItem().getTranslationKey().equals("item.minecraft.fishing_rod")){
+                FishingRod.updateSpec(mainhandStack);
+            }
+        }
+            
 
         if((changed_item = FishItems.getFishItem(stack))!=null) stack = new ItemStack((ItemConvertible) changed_item, stack.getCount());
 

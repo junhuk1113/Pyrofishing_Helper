@@ -8,7 +8,6 @@ import net.minecraft.network.listener.ClientPlayPacketListener;
 import net.minecraft.network.listener.TickablePacketListener;
 import net.minecraft.network.packet.s2c.play.PlaySoundS2CPacket;
 import net.pmkjun.pyrofishinghelper.FishHelperClient;
-import net.pmkjun.pyrofishinghelper.FishHelperMod;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 

@@ -3,7 +3,6 @@ package net.pmkjun.pyrofishinghelper.fabric.mixin;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.hud.InGameHud;
 import net.pmkjun.pyrofishinghelper.FishHelperClient;
-import net.pmkjun.pyrofishinghelper.FishHelperMod;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;

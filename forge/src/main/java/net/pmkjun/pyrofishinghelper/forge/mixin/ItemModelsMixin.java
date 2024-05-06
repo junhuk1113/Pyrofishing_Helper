@@ -13,6 +13,8 @@ import net.pmkjun.pyrofishinghelper.FishHelperClient;
 import net.pmkjun.pyrofishinghelper.forge.item.FishItems;
 import net.pmkjun.pyrofishinghelper.util.ConvertActivateTime;
 import net.pmkjun.pyrofishinghelper.util.ConvertCooldown;
+import net.pmkjun.pyrofishinghelper.util.FishingRod;
+
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -31,6 +33,8 @@ public class ItemModelsMixin {
     public BakedModel getModel(Item item) {
         return null;
     }
+    private MinecraftClient mc = MinecraftClient.getInstance();
+    private ItemStack previousMainhandStack;
 
     @Inject(method = {"getModel(Lnet/minecraft/item/ItemStack;)Lnet/minecraft/client/render/model/BakedModel;"},at = {@At("TAIL")}, cancellable = true)
     public void getModelMixin(ItemStack stack, CallbackInfoReturnable<BakedModel> cir){
@@ -44,7 +48,7 @@ public class ItemModelsMixin {
 
         cir.cancel();
 
-        ItemText = stack.getTooltip(MinecraftClient.getInstance().player, TooltipContext.BASIC);
+        ItemText = stack.getTooltip(mc.player, TooltipContext.BASIC);
         for(Text text : ItemText){
             if(Itemname == null)
                 Itemname = text.getString();
@@ -75,11 +79,21 @@ public class ItemModelsMixin {
                 levelString = text.getString().replace("효과| ", "");
                 levelString = levelString.replace(" 초 감소", "");
                 secondDouble = Double.parseDouble(levelString);
-                secondLong = (long)(secondDouble*1000);
+                secondLong = (long)(secondDouble * 1000);
                 if(FishHelperClient.getInstance().data.valueCooldownReduction!=secondLong){
                     FishHelperClient.getInstance().data.valueCooldownReduction = secondLong;
                     FishHelperClient.getInstance().configManage.save();
                 }
+            }
+        }
+        @SuppressWarnings("null")
+        ItemStack mainhandStack = mc.player.getMainHandStack();
+        if(mainhandStack!=previousMainhandStack){
+            previousMainhandStack = mainhandStack;
+            //mc.player.sendMessage(Text.literal("MainhandStack 변경됨 : "+mainhandStack.getItem().getTranslationKey()));
+
+            if(mainhandStack.getItem().getTranslationKey().equals("item.minecraft.fishing_rod")){
+                FishingRod.updateSpec(mainhandStack);
             }
         }
 
@@ -90,4 +104,3 @@ public class ItemModelsMixin {
     }
 
 }
-

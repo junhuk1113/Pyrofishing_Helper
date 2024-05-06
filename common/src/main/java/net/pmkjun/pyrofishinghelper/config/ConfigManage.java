@@ -6,9 +6,16 @@ import net.pmkjun.pyrofishinghelper.file.Data;
 import java.io.*;
 
 public class ConfigManage {
-    private static final String DATA_DIRECTORY_PATH = "\\PyrofishingHelper";
+    private static String DATA_DIRECTORY_PATH = "\\PyrofishingHelper";
 
-    private static final String DATA_FILE_PATH = "\\PyrofishingHelper\\configv3.data";
+    private static String DATA_FILE_PATH = "\\PyrofishingHelper\\configv3.data";
+
+    public ConfigManage(){
+        if(!System.getProperty("os.name").contains("Windows")){
+            DATA_DIRECTORY_PATH = "/PyrofishingHelper";
+            DATA_FILE_PATH = DATA_DIRECTORY_PATH + "/configv3.data";
+        }
+    }
 
     public void save() {
         save((FishHelperClient.getInstance()).data);

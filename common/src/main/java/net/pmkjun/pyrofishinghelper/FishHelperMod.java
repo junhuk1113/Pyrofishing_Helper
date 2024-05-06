@@ -1,7 +1,6 @@
 package net.pmkjun.pyrofishinghelper;
 
 import com.mojang.logging.LogUtils;
-import net.pmkjun.pyrofishinghelper.item.FishItemList;
 import org.slf4j.Logger;
 
 public class FishHelperMod

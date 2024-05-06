@@ -6,7 +6,6 @@ import net.minecraftforge.client.event.RegisterKeyMappingsEvent;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import net.pmkjun.pyrofishinghelper.FishHelperClient;
 import net.pmkjun.pyrofishinghelper.gui.screen.ConfigScreen;
 import net.pmkjun.pyrofishinghelper.input.IKeyMappings;
 import net.minecraftforge.common.MinecraftForge;
@@ -28,7 +27,6 @@ public class KeyMappings implements IKeyMappings {
     @SubscribeEvent
     public void onClientTick(TickEvent.ClientTickEvent event) {
         MinecraftClient mc = MinecraftClient.getInstance();
-        FishHelperClient client = FishHelperClient.getInstance();
 
         if(event.phase == TickEvent.Phase.END) {
             while(openSettingScreen.wasPressed()) {

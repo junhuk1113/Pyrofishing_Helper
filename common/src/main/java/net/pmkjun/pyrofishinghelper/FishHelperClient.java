@@ -4,6 +4,7 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
 import net.pmkjun.pyrofishinghelper.config.ConfigManage;
 import net.pmkjun.pyrofishinghelper.file.Data;
+import net.pmkjun.pyrofishinghelper.gui.FishCounterGui;
 import net.pmkjun.pyrofishinghelper.gui.totemCooltimeGui;
 import net.pmkjun.pyrofishinghelper.util.Timer;
 
@@ -14,6 +15,7 @@ public class FishHelperClient {
     public ConfigManage configManage;
 
     private final totemCooltimeGui totemcooltimeGui;
+    private final FishCounterGui fishCounterGui;
     private final Timer timer = new Timer();
     public FishHelperClient(){
         this.mc = MinecraftClient.getInstance();
@@ -25,6 +27,7 @@ public class FishHelperClient {
             this.configManage.save();
         }
         this.totemcooltimeGui = new totemCooltimeGui();
+        this.fishCounterGui = new FishCounterGui();
     }
     public void init(){
 
@@ -32,6 +35,7 @@ public class FishHelperClient {
     public void renderEvent(DrawContext context) {
         this.totemcooltimeGui.renderTick(context,this.timer);
         this.timer.updateTime();
+        this.fishCounterGui.renderTick(context);
     }
     public void updateTotemtime(){
         this.data.lastTotemTime = this.timer.getCurrentTime();
@@ -39,6 +43,12 @@ public class FishHelperClient {
         this.data.currentValueTotemActivetime = this.data.valueTotemActivetime;
         this.data.currentValueTotemCooldown = this.data.valueTotemCooldown;
         this.configManage.save();
+    }
+
+    public void resetFishCounter(){
+        for(int i = 0; i < this.data.fish_Count.length ; i++){
+            this.data.fish_Count[i] = 0;
+        }
     }
 
     public String getUsername(){
