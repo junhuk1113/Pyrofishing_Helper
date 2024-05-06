@@ -40,7 +40,7 @@ public class FishingRod {
         if(PrecisionCuttinglevel != client.data.valuePrecisionCutting)
         {
             //mc.player.sendMessage(Text.literal("Solar Rage Lv : "+client.data.valueSolarRage+" >> "+Augmentlevel));
-            client.data.valueSolarRage = PrecisionCuttinglevel;
+            client.data.valuePrecisionCutting = PrecisionCuttinglevel;
             client.configManage.save();
         }
     }

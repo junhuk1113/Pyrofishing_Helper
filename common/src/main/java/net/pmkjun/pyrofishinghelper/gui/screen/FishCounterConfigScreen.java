@@ -68,7 +68,7 @@ public class FishCounterConfigScreen extends Screen{
         };
         this.addDrawableChild(counterXSlider);
 
-        counterYSlider = new Slider(getRegularX() + 5, getRegularY()+(20+2)*6, 150, 20, Text.literal("Y : "),1,1000,this.client.data.Counter_xpos){
+        counterYSlider = new Slider(getRegularX() + 5, getRegularY()+(20+2)*6, 150, 20, Text.literal("Y : "),1,1000,this.client.data.Counter_ypos){
             @Override
             protected void applyValue() {
                 client.data.Counter_ypos = getValueInt();
