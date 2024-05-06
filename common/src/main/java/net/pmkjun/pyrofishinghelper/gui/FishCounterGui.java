@@ -106,11 +106,4 @@ public class FishCounterGui {
         poseStack.pop();
         
     }
-
-    private int getXpos(){
-        return 2 + (this.mc.getWindow().getScaledWidth()-43-2) * this.client.data.Timer_xpos / 1000;
-    }
-    private int getYpos(){
-        return 2 + (this.mc.getWindow().getScaledHeight()-18-2) * this.client.data.Timer_ypos / 1000;
-    }
 }

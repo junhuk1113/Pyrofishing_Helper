@@ -1,18 +1,15 @@
 package net.pmkjun.pyrofishinghelper.mixin;
 
-import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.hud.ChatHud;
 import net.minecraft.text.Text;
 import net.pmkjun.pyrofishinghelper.FishHelperClient;
 import net.pmkjun.pyrofishinghelper.FishHelperMod;
 import net.pmkjun.pyrofishinghelper.item.FishItemList;
-import net.pmkjun.pyrofishinghelper.util.Earning;
 
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import java.util.Arrays;
 
 @Mixin(ChatHud.class)
 public abstract class ChatMixin {
@@ -22,7 +19,6 @@ public abstract class ChatMixin {
     private static final int EPIC = 3;
     private static final int LEGENDARY = 4;
     private static final int MYTHIC = 5;
-    private final MinecraftClient mc = MinecraftClient.getInstance();
 
     private final FishHelperClient client = FishHelperClient.getInstance();
     @Inject(at = @At("RETURN"), method = "addMessage(Lnet/minecraft/text/Text;)V")
@@ -76,12 +72,6 @@ public abstract class ChatMixin {
                 }
             }
         }
-            if(client.data.toggleFishCounter) {
-                assert mc.player != null;
-                mc.player.sendMessage(Text.literal(Arrays.toString(client.data.fish_Count)));
-                mc.player.sendMessage(Text.literal("번 수익 : "+Earning.getMoney()+"원("+Earning.getEntropy()+"엔트로피)"));
-                mc.player.sendMessage(Text.literal("보주 : S("+client.data.valueSolarRage+") P("+client.data.valuePrecisionCutting+")"));
-            }
         }
     }
 }
