@@ -5,9 +5,9 @@ public class ConvertCooldown {
 
     }
     public static int asMinute(int level){
-        return 60-(level*3);
+        return 60-(level*2);
     }
     public static int asLevel(int minute){
-        return (60-minute)/3;
+        return (60-minute)/2;
     }
 }

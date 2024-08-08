@@ -51,7 +51,7 @@ public class TotemTimerConfigScreen extends Screen {
             toggleTotem = "fishhelper.config.disable";
         }
 
-        activateTimeSlider = new Slider(getRegularX() + 5, getRegularY(), 150, 20, Text.literal(""),0,20,ConvertActivateTime.asLevel(this.client.data.valueTotemActivetime)){
+        activateTimeSlider = new Slider(getRegularX() + 5, getRegularY(), 150, 20, Text.literal(""),0,25,ConvertActivateTime.asLevel(this.client.data.valueTotemActivetime)){
             @Override
             protected void updateMessage() {
                 int level = getValueInt();

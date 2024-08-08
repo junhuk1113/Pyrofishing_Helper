@@ -26,7 +26,7 @@ public abstract class ChatMixin {
         if(client.data.toggleChattinglog)
             FishHelperMod.LOGGER.info(message.getString());
         
-        if((message.getString().contains("\uE2F8 ") && (message.getString().contains("을 낚았습니다!")||message.getString().contains("You caught a")))||
+        if((message.getString().contains("\uE2F8 ") && (message.getString().contains("을(를) 낚았습니다.")||message.getString().contains("You caught a")))||
         (message.getString().contains("\uE2F8 ") && message.getString().contains("로 변환되었습니다."))){
         FISH:
         {
