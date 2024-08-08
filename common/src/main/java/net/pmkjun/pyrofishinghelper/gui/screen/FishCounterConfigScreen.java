@@ -165,4 +165,9 @@ public class FishCounterConfigScreen extends Screen{
     int getRegularY() {
         return mc.getWindow().getScaledHeight() / 2 - height / 2;
     }
+
+    @Override
+    public void close() {
+        this.mc.setScreen(parentScreen);
+    }
 }

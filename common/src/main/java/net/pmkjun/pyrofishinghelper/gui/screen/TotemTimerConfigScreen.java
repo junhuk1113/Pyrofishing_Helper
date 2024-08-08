@@ -168,4 +168,9 @@ public class TotemTimerConfigScreen extends Screen {
         return mc.getWindow().getScaledHeight() / 2 - height / 2;
     }
 
+    @Override
+    public void close() {
+        this.mc.setScreen(parentScreen);
+    }
+
 }
