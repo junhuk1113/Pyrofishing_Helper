@@ -80,4 +80,9 @@ public class ConfigScreen extends Screen{
         }
         client.configManage.save();
     }
+
+    @Override
+    public void close() {
+        this.mc.setScreen(parentScreen);
+    }
 }
