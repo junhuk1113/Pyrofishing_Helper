@@ -22,8 +22,6 @@ public abstract class FishingMixin {
 
     @Shadow @Nullable public abstract PlayerEntity getPlayerOwner();
 
-    @Shadow public abstract boolean canUsePortals();
-
     @Inject(method = "onRemoved", at = @At("RETURN"))
     private void onRemovedMixin(CallbackInfo ci) {
         String bobberOwner;

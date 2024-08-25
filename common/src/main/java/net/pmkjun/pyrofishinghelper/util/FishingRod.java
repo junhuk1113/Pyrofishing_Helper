@@ -3,8 +3,9 @@ package net.pmkjun.pyrofishinghelper.util;
 import java.util.List;
 
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.item.TooltipContext;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.tooltip.TooltipType;
 import net.minecraft.text.Text;
 import net.pmkjun.pyrofishinghelper.FishHelperClient;
 
@@ -17,7 +18,7 @@ public class FishingRod {
         String tooltipString;
         int SolarRagelevel = 0, PrecisionCuttinglevel = 0;
 
-        ItemText = stack.getTooltip(mc.player, TooltipContext.BASIC);
+        ItemText = stack.getTooltip(Item.TooltipContext.DEFAULT, mc.player, TooltipType.BASIC);
         //mc.player.sendMessage(Text.literal("낚시대 감지"));
         for(Text text : ItemText){
             //mc.player.sendMessage(text);

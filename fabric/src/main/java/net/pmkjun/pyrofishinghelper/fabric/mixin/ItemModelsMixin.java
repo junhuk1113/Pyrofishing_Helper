@@ -1,13 +1,13 @@
 package net.pmkjun.pyrofishinghelper.fabric.mixin;
 
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.item.TooltipContext;
 import net.minecraft.client.render.item.ItemModels;
 import net.minecraft.client.render.model.BakedModel;
 import net.minecraft.client.render.model.BakedModelManager;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemConvertible;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.tooltip.TooltipType;
 import net.minecraft.text.Text;
 import net.pmkjun.pyrofishinghelper.FishHelperClient;
 import net.pmkjun.pyrofishinghelper.fabric.item.FishItems;
@@ -49,7 +49,7 @@ public class ItemModelsMixin {
 
         cir.cancel();
 
-        ItemText = stack.getTooltip(mc.player, TooltipContext.BASIC);
+        ItemText = stack.getTooltip(Item.TooltipContext.DEFAULT, mc.player, TooltipType.BASIC);
         for(Text text : ItemText){
             if(Itemname == null)
                 Itemname = text.getString();
