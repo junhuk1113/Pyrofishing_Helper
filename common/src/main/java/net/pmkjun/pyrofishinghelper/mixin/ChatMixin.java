@@ -1,5 +1,6 @@
 package net.pmkjun.pyrofishinghelper.mixin;
 
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.hud.ChatHud;
 import net.minecraft.text.Text;
 import net.pmkjun.pyrofishinghelper.FishHelperClient;
@@ -21,13 +22,14 @@ public abstract class ChatMixin {
     private static final int MYTHIC = 5;
 
     private final FishHelperClient client = FishHelperClient.getInstance();
+    private final MinecraftClient mc = MinecraftClient.getInstance();
     @Inject(at = @At("RETURN"), method = "addMessage(Lnet/minecraft/text/Text;)V")
     private void addMessageMixin(Text message, CallbackInfo ci) {
         if(client.data.toggleChattinglog)
             FishHelperMod.LOGGER.info(message.getString());
-        
-        if((message.getString().contains("\uE2F8 ") && (message.getString().contains("을(를) 낚았습니다.")||message.getString().contains("You caught a")))||
-        (message.getString().contains("\uE2F8 ") && message.getString().contains("로 변환되었습니다."))){
+        FishHelperMod.LOGGER.info(message.getString());
+        if((message.getString().contains("을(를) 낚았습니다.")||message.getString().contains("You caught a"))||
+        message.getString().contains("로 변환되었습니다.")){
         FISH:
         {
             for(String fishName : FishItemList.MYTHIC_FISH_LIST){

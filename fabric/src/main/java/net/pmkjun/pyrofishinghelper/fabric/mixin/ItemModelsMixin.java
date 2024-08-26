@@ -1,5 +1,6 @@
 package net.pmkjun.pyrofishinghelper.fabric.mixin;
 
+import net.fabricmc.fabric.api.renderer.v1.model.FabricBakedModel;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.item.ItemModels;
 import net.minecraft.client.render.model.BakedModel;
@@ -103,7 +104,7 @@ public class ItemModelsMixin {
         if((changed_item = FishItems.getFishItem(stack))!=null) stack = new ItemStack((ItemConvertible) changed_item, stack.getCount());
 
         BakedModel bakedModel = getModel(stack.getItem());
-        cir.setReturnValue((bakedModel == null) ? modelManager.getMissingModel() : bakedModel);
+        cir.setReturnValue((bakedModel == null) ? modelManager.getMissingModel() : bakedModel); 
     }
 
 }
