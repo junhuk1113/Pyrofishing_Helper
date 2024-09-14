@@ -46,7 +46,7 @@ public class FishItems {
         String name = itemStack.getName().getString();
         int index;
 
-        if(!(itemStack.getItem().toString().equals("cod"))) return null;
+        if(!(itemStack.getItem().toString().equals("minecraft:cod"))) return null;
         if(!FishHelperClient.getInstance().data.toggleCustomTexture) return null;
 
         index = Arrays.stream(FishItemList.COMMMON_FISH_LIST).toList().indexOf(name);
