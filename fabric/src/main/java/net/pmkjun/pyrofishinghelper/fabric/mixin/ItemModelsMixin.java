@@ -102,7 +102,7 @@ public class ItemModelsMixin {
             
 
         if((changed_item = FishItems.getFishItem(stack))!=null) stack = new ItemStack((ItemConvertible) changed_item, stack.getCount());
-
+        //System.out.println(stack.getName().getLiteralString());
         BakedModel bakedModel = getModel(stack.getItem());
         cir.setReturnValue((bakedModel == null) ? modelManager.getMissingModel() : bakedModel); 
     }

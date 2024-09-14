@@ -46,14 +46,17 @@ public class FishItems {
 
     }
     public static Item getFishItem(ItemStack itemStack){
-        String name = itemStack.getName().getString();
+        String name = itemStack.getName().getLiteralString();
         int index;
-
-        if(!(itemStack.getItem().toString().equals("cod"))) return null;
+        System.out.println(itemStack.getItem().toString());
+        if(!(itemStack.getItem().toString().equals("minecraft:cod"))) return null;
         if(!FishHelperClient.getInstance().data.toggleCustomTexture) return null;
-
+        System.out.println("조건통과");
         index = Arrays.stream(FishItemList.COMMMON_FISH_LIST).toList().indexOf(name);
-        if(index!=-1) return COMMON_FISH[index];
+        if(index!=-1){
+            System.out.println("커먼물고기!");
+             return COMMON_FISH[index];
+        }
 
         index = Arrays.stream(FishItemList.UNCOMMON_FISH_LIST).toList().indexOf(name);
         if(index!=-1) return UNCOMMON_FISH[index];
