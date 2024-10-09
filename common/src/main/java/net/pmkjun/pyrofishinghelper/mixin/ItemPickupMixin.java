@@ -22,13 +22,13 @@ public class ItemPickupMixin {
 	private final FishHelperClient client = FishHelperClient.getInstance();
 	private final Minecraft mc = Minecraft.getInstance();
 	@Shadow
-	private ItemStack cursorStack;
+	private ItemStack carried;
 	@Inject(method = "clicked", at = @At("RETURN"))
 	private void onSlotClick(int slotId, int button, ClickType clickType, Player player, CallbackInfo ci) {
 		if (player instanceof LocalPlayer) {
-			if (!cursorStack.isEmpty()&&cursorStack.hasTag()) {
-				System.out.println(cursorStack.getTooltipLines(mc.player, TooltipFlag.NORMAL));
-				if(cursorStack.getHoverName().getString().equals("토템 발동")){
+			if (!carried.isEmpty()&&carried.hasTag()) {
+				System.out.println(carried.getTooltipLines(mc.player, TooltipFlag.NORMAL));
+				if(carried.getHoverName().getString().equals("토템 발동")){
 					LOGGER.info("토템 발동 버튼 눌림");
 					client.updateTotemtime();
 				}

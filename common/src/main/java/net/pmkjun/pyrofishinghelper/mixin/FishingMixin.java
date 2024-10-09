@@ -17,12 +17,12 @@ public abstract class FishingMixin {
     FishHelperClient client = FishHelperClient.getInstance();
 
     @Shadow
-    private boolean caughtFish;
+    private boolean biting;
 
 
     @Shadow @Nullable public abstract Player getPlayerOwner();
 
-    @Shadow public abstract boolean canUsePortals();
+    @Shadow public abstract boolean canChangeDimensions();
 
     @Inject(method = "onClientRemoval", at = @At("RETURN"))
     private void onRemovedMixin(CallbackInfo ci) {
@@ -37,7 +37,7 @@ public abstract class FishingMixin {
 
         //LOGGER.info("Fishing bobber entity removed."+caughtFish+" "+bobberOwner);
 
-        if(caughtFish && bobberOwner.equals(FishHelperClient.getInstance().getUsername()) && client.data.isTotemCooldown){
+        if(biting && bobberOwner.equals(FishHelperClient.getInstance().getUsername()) && client.data.isTotemCooldown){
             //LOGGER.info("fish caught!"+FishHelperClient.getInstance().getUsername());
             client.data.lastTotemCooldownTime -= client.data.valueCooldownReduction;
             client.configManage.save();
