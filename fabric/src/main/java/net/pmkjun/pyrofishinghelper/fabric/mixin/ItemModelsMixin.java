@@ -37,7 +37,7 @@ public class ItemModelsMixin {
     private Minecraft mc = Minecraft.getInstance();
     private ItemStack previousMainhandStack;
 
-    @Inject(method = {"getModel(Lnet/minecraft/item/ItemStack;)Lnet/minecraft/client/render/model/BakedModel;"},at = {@At("TAIL")}, cancellable = true)
+    @Inject(method = {"getModel(Lnet/minecraft/world/item/ItemStack;)Lnet/minecraft/client/resources/model/BakedModel;"},at = {@At("TAIL")}, cancellable = true)
     public void getModelMixin(ItemStack stack, CallbackInfoReturnable<BakedModel> cir){
         Item changed_item;
         List<Component> ItemText;

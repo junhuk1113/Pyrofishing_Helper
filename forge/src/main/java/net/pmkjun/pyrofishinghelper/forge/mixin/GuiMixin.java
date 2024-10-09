@@ -18,7 +18,7 @@ public class GuiMixin extends Gui {
         super(mc, itemRenderer);
     }
 
-    @Inject(method = "render(Lnet/minecraft/client/gui/DrawContext;F)V", at = {@At("HEAD")}, cancellable = false)
+    @Inject(method = "render(Lnet/minecraft/client/gui/GuiGraphics;F)V", at = {@At("HEAD")}, cancellable = false)
     public void renderMixin(GuiGraphics guiGraphics, float partialTick, CallbackInfo info) {
         FishHelperClient.getInstance().renderEvent(guiGraphics);
     }
