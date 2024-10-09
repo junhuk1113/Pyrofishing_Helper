@@ -1,12 +1,12 @@
 package net.pmkjun.pyrofishinghelper.mixin;
 
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.item.TooltipContext;
-import net.minecraft.client.network.ClientPlayerEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.screen.ScreenHandler;
-import net.minecraft.screen.slot.SlotActionType;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.player.LocalPlayer;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.inventory.ClickType;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
 import net.pmkjun.pyrofishinghelper.FishHelperClient;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -16,19 +16,19 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-@Mixin(ScreenHandler.class)
+@Mixin(AbstractContainerMenu.class)
 public class ItemPickupMixin {
 	private static final Logger LOGGER = LogManager.getLogger("ItemPickupMixin");
 	private final FishHelperClient client = FishHelperClient.getInstance();
-	private final MinecraftClient mc = MinecraftClient.getInstance();
+	private final Minecraft mc = Minecraft.getInstance();
 	@Shadow
 	private ItemStack cursorStack;
-	@Inject(method = "onSlotClick", at = @At("RETURN"))
-	private void onSlotClick(int slotIndex, int button, SlotActionType actionType, PlayerEntity player, CallbackInfo ci) {
-		if (player instanceof ClientPlayerEntity) {
-			if (!cursorStack.isEmpty()&&cursorStack.hasNbt()) {
-				System.out.println(cursorStack.getTooltip(mc.player, TooltipContext.BASIC));
-				if(cursorStack.getName().getString().equals("토템 발동")){
+	@Inject(method = "clicked", at = @At("RETURN"))
+	private void onSlotClick(int slotId, int button, ClickType clickType, Player player, CallbackInfo ci) {
+		if (player instanceof LocalPlayer) {
+			if (!cursorStack.isEmpty()&&cursorStack.hasTag()) {
+				System.out.println(cursorStack.getTooltipLines(mc.player, TooltipFlag.NORMAL));
+				if(cursorStack.getHoverName().getString().equals("토템 발동")){
 					LOGGER.info("토템 발동 버튼 눌림");
 					client.updateTotemtime();
 				}

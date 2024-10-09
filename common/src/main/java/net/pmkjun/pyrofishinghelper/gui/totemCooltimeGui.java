@@ -1,31 +1,32 @@
 package net.pmkjun.pyrofishinghelper.gui;
 
 import com.mojang.blaze3d.systems.RenderSystem;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.font.TextRenderer;
-import net.minecraft.client.gui.DrawContext;
-import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.text.Text;
-import net.minecraft.util.Identifier;
+import com.mojang.blaze3d.vertex.PoseStack;
+
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.Font;
+import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
 import net.pmkjun.pyrofishinghelper.FishHelperClient;
 import net.pmkjun.pyrofishinghelper.util.Timer;
 
 
 
 public class totemCooltimeGui {
-    private MinecraftClient mc;
+    private Minecraft mc;
     private FishHelperClient client;
-    private TextRenderer font;
+    private Font font;
 
-    private static final Identifier TOTEM_ICON = new Identifier("pyrofishinghelper","totem.png");
-    private static final Identifier TOTEM_SLEEP_ICON = new Identifier("pyrofishinghelper","sleepingtotem3.png");
+    private static final ResourceLocation TOTEM_ICON = new ResourceLocation("pyrofishinghelper","totem.png");
+    private static final ResourceLocation TOTEM_SLEEP_ICON = new ResourceLocation("pyrofishinghelper","sleepingtotem3.png");
 
     public totemCooltimeGui(){
-        this.mc = MinecraftClient.getInstance();
+        this.mc = Minecraft.getInstance();
         this.client = FishHelperClient.getInstance();
     }
 
-    public void renderTick(DrawContext context, Timer timer){
+    public void renderTick(GuiGraphics context, Timer timer){
         int activesecond,cooldownsecond;
 
         activesecond = this.client.data.currentValueTotemActivetime * 60 - (int)timer.getDifference(this.client.data.lastTotemTime);
@@ -48,39 +49,39 @@ public class totemCooltimeGui {
         }
     }
 
-    private void render(DrawContext context,Identifier texture, int second){
-        MatrixStack poseStack = context.getMatrices();
+    private void render(GuiGraphics context,ResourceLocation texture, int second){
+        PoseStack poseStack = context.pose();
         int Timer_xpos, Timer_ypos;
         Timer_xpos = getXpos();
         Timer_ypos = getYpos();
 
-        poseStack.push();
+        poseStack.pushPose();
         poseStack.translate(Timer_xpos,Timer_ypos,0.0D);
         poseStack.scale(0.0625F, 0.0625F, 0.0625F);
 
         RenderSystem.setShaderTexture(0,texture);
-        context.drawTexture(texture, 0, 0, 0, 0, 256, 256);
+        context.blit(texture, 0, 0, 0, 0, 256, 256);
         poseStack.scale(16.0F, 16.0F, 16.0F);
-        poseStack.pop();
+        poseStack.popPose();
 
         if (this.client.data.toggleTotemtimeText) {
-            this.font = this.mc.textRenderer;
+            this.font = this.mc.font;
             int minute = second / 60;
             second -= minute * 60;
-            poseStack.push();
+            poseStack.pushPose();
             poseStack.translate((Timer_xpos + 16 + 2), Timer_ypos+4, 0.0D);
             poseStack.scale(0.9090909F, 0.9090909F, 0.9090909F);
-            context.drawTextWithShadow(this.font, (Text)Text.literal(String.format("%02d:%02d", new Object[] { Integer.valueOf(minute), Integer.valueOf(second) })), 0, 0, 16777215);
+            context.drawString(this.font, Component.literal(String.format("%02d:%02d", new Object[] { Integer.valueOf(minute), Integer.valueOf(second) })), 0, 0, 16777215);
             poseStack.scale(1.1F, 1.1F, 1.1F);
 
-            poseStack.pop();
+            poseStack.popPose();
         }
     }
     private int getXpos(){
-        return 2 + (this.mc.getWindow().getScaledWidth()-43-2) * this.client.data.Timer_xpos / 1000;
+        return 2 + (this.mc.getWindow().getGuiScaledWidth()-43-2) * this.client.data.Timer_xpos / 1000;
     }
     private int getYpos(){
-        return 2 + (this.mc.getWindow().getScaledHeight()-18-2) * this.client.data.Timer_ypos / 1000;
+        return 2 + (this.mc.getWindow().getGuiScaledHeight()-18-2) * this.client.data.Timer_ypos / 1000;
     }
 
 }

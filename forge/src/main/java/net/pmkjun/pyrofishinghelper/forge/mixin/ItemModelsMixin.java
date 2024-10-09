@@ -1,14 +1,14 @@
 package net.pmkjun.pyrofishinghelper.forge.mixin;
 
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.item.TooltipContext;
-import net.minecraft.client.render.item.ItemModels;
-import net.minecraft.client.render.model.BakedModel;
-import net.minecraft.client.render.model.BakedModelManager;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemConvertible;
-import net.minecraft.item.ItemStack;
-import net.minecraft.text.Text;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.ItemModelShaper;
+import net.minecraft.client.resources.model.BakedModel;
+import net.minecraft.client.resources.model.ModelManager;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.level.ItemLike;
 import net.pmkjun.pyrofishinghelper.FishHelperClient;
 import net.pmkjun.pyrofishinghelper.forge.item.FishItems;
 import net.pmkjun.pyrofishinghelper.util.ConvertActivateTime;
@@ -24,22 +24,22 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.List;
 
-@Mixin(ItemModels.class)
+@Mixin(ItemModelShaper.class)
 public class ItemModelsMixin {
     @Shadow
     @Final
-    private BakedModelManager modelManager;
+    private ModelManager modelManager;
     @Shadow
     public BakedModel getModel(Item item) {
         return null;
     }
-    private MinecraftClient mc = MinecraftClient.getInstance();
+    private Minecraft mc = Minecraft.getInstance();
     private ItemStack previousMainhandStack;
 
-    @Inject(method = {"getModel(Lnet/minecraft/item/ItemStack;)Lnet/minecraft/client/render/model/BakedModel;"},at = {@At("TAIL")}, cancellable = true)
+    @Inject(method = {"getItemModel(Lnet/minecraft/world/item/ItemStack;)Lnet/minecraft/client/resources/model/BakedModel;"},at = {@At("TAIL")}, cancellable = true)
     public void getModelMixin(ItemStack stack, CallbackInfoReturnable<BakedModel> cir){
         Item changed_item;
-        List<Text> ItemText;
+        List<Component> ItemText;
         String Itemname = null;
         String levelString;
         int levelInt;
@@ -48,8 +48,8 @@ public class ItemModelsMixin {
 
         cir.cancel();
 
-        ItemText = stack.getTooltip(mc.player, TooltipContext.BASIC);
-        for(Text text : ItemText){
+        ItemText = stack.getTooltipLines(mc.player, TooltipFlag.NORMAL);
+        for(Component text : ItemText){
             if(Itemname == null)
                 Itemname = text.getString();
 
@@ -87,21 +87,20 @@ public class ItemModelsMixin {
             }
         }
         @SuppressWarnings("null")
-        ItemStack mainhandStack = mc.player.getMainHandStack();
+        ItemStack mainhandStack = mc.player.getMainHandItem();
         if(mainhandStack!=previousMainhandStack){
             previousMainhandStack = mainhandStack;
             //mc.player.sendMessage(Text.literal("MainhandStack 변경됨 : "+mainhandStack.getItem().getTranslationKey()));
 
-            if(mainhandStack.getItem().getTranslationKey().equals("item.minecraft.fishing_rod")){
+            if(mainhandStack.getItem().getDescriptionId().equals("item.minecraft.fishing_rod")){
                 FishingRod.updateSpec(mainhandStack);
             }
         }
 
-        if((changed_item = FishItems.getFishItem(stack))!=null) stack = new ItemStack((ItemConvertible) changed_item, stack.getCount());
+        if((changed_item = FishItems.getFishItem(stack))!=null) stack = new ItemStack((ItemLike) changed_item, stack.getCount());
 
         BakedModel bakedModel = getModel(stack.getItem());
         cir.setReturnValue((bakedModel == null) ? modelManager.getMissingModel() : bakedModel);
     }
 
 }
-

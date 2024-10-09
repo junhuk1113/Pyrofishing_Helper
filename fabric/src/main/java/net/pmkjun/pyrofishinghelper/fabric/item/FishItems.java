@@ -1,10 +1,10 @@
 package net.pmkjun.pyrofishinghelper.fabric.item;
 
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.registry.Registries;
-import net.minecraft.registry.Registry;
-import net.minecraft.util.Identifier;
+import net.minecraft.core.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import net.pmkjun.pyrofishinghelper.FishHelperClient;
 import net.pmkjun.pyrofishinghelper.item.FishItemList;
 
@@ -20,33 +20,33 @@ public class FishItems {
     public static void register(){
         int i;
         for(i = 0; i<COMMON_FISH.length; i++){
-            COMMON_FISH[i] = new Item(new Item.Settings());
-            Registry.register(Registries.ITEM, new Identifier("pyrofishinghelper", "common_"+i), COMMON_FISH[i]);
+            COMMON_FISH[i] = new Item(new Item.Properties());
+            Registry.register(BuiltInRegistries.ITEM, new ResourceLocation("pyrofishinghelper", "common_"+i), COMMON_FISH[i]);
         }
         for(i = 0; i<UNCOMMON_FISH.length; i++){
-            UNCOMMON_FISH[i] = new Item(new Item.Settings());
-            Registry.register(Registries.ITEM, new Identifier("pyrofishinghelper", "uncommon_"+i), UNCOMMON_FISH[i]);
+            UNCOMMON_FISH[i] = new Item(new Item.Properties());
+            Registry.register(BuiltInRegistries.ITEM, new ResourceLocation("pyrofishinghelper", "uncommon_"+i), UNCOMMON_FISH[i]);
         }
         for(i = 0; i<RARE_FISH.length; i++){
-            RARE_FISH[i] = new Item(new Item.Settings());
-            Registry.register(Registries.ITEM, new Identifier("pyrofishinghelper", "rare_"+i), RARE_FISH[i]);
+            RARE_FISH[i] = new Item(new Item.Properties());
+            Registry.register(BuiltInRegistries.ITEM, new ResourceLocation("pyrofishinghelper", "rare_"+i), RARE_FISH[i]);
         }
         for(i = 0; i<EPIC_FISH.length; i++){
-            EPIC_FISH[i] = new Item(new Item.Settings());
-            Registry.register(Registries.ITEM, new Identifier("pyrofishinghelper", "epic_"+i), EPIC_FISH[i]);
+            EPIC_FISH[i] = new Item(new Item.Properties());
+            Registry.register(BuiltInRegistries.ITEM, new ResourceLocation("pyrofishinghelper", "epic_"+i), EPIC_FISH[i]);
         }
         for(i = 0; i<LEGENDARY_FISH.length; i++){
-            LEGENDARY_FISH[i] = new Item(new Item.Settings());
-            Registry.register(Registries.ITEM, new Identifier("pyrofishinghelper", "legendary_"+i), LEGENDARY_FISH[i]);
+            LEGENDARY_FISH[i] = new Item(new Item.Properties());
+            Registry.register(BuiltInRegistries.ITEM, new ResourceLocation("pyrofishinghelper", "legendary_"+i), LEGENDARY_FISH[i]);
         }
         for(i = 0; i<MYTHIC_FISH.length; i++){
-            MYTHIC_FISH[i] = new Item(new Item.Settings());
-            Registry.register(Registries.ITEM, new Identifier("pyrofishinghelper", "mythic_"+i), MYTHIC_FISH[i]);
+            MYTHIC_FISH[i] = new Item(new Item.Properties());
+            Registry.register(BuiltInRegistries.ITEM, new ResourceLocation("pyrofishinghelper", "mythic_"+i), MYTHIC_FISH[i]);
         }
 
     }
     public static Item getFishItem(ItemStack itemStack){
-        String name = itemStack.getName().getString();
+        String name = itemStack.getHoverName().getString();
         int index;
 
         if(!(itemStack.getItem().toString().equals("cod"))) return null;
@@ -73,4 +73,3 @@ public class FishItems {
         return null;
     }
 }
-

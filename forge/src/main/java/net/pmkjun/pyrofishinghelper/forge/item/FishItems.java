@@ -1,7 +1,7 @@
 package net.pmkjun.pyrofishinghelper.forge.item;
 
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
@@ -23,27 +23,27 @@ public class FishItems {
     public static void register(){
         int i;
         for(i = 0; i<FishItemList.COMMMON_FISH_LIST.length; i++){
-            COMMON_FISH[i] = ITEMS.register("common_"+i, () -> new Item(new Item.Settings()));
+            COMMON_FISH[i] = ITEMS.register("common_"+i, () -> new Item(new Item.Properties()));
         }
         for(i = 0; i<FishItemList.UNCOMMON_FISH_LIST.length; i++){
-            UNCOMMON_FISH[i] = ITEMS.register("uncommon_"+i, () -> new Item(new Item.Settings()));
+            UNCOMMON_FISH[i] = ITEMS.register("uncommon_"+i, () -> new Item(new Item.Properties()));
         }
         for(i = 0; i<FishItemList.RARE_FISH_LIST.length; i++){
-            RARE_FISH[i] = ITEMS.register("rare_"+i, () -> new Item(new Item.Settings()));
+            RARE_FISH[i] = ITEMS.register("rare_"+i, () -> new Item(new Item.Properties()));
         }
         for(i = 0; i<FishItemList.EPIC_FISH_LIST.length; i++){
-            EPIC_FISH[i] = ITEMS.register("epic_"+i, () -> new Item(new Item.Settings()));
+            EPIC_FISH[i] = ITEMS.register("epic_"+i, () -> new Item(new Item.Properties()));
         }
         for(i = 0; i<FishItemList.LEGENDARY_FISH_LIST.length; i++){
-            LEGENDARY_FISH[i] = ITEMS.register("legendary_"+i, () -> new Item(new Item.Settings()));
+            LEGENDARY_FISH[i] = ITEMS.register("legendary_"+i, () -> new Item(new Item.Properties()));
         }
         for(i = 0; i<FishItemList.MYTHIC_FISH_LIST.length; i++){
-            MYTHIC_FISH[i] = ITEMS.register("mythic_"+i, () -> new Item(new Item.Settings()));
+            MYTHIC_FISH[i] = ITEMS.register("mythic_"+i, () -> new Item(new Item.Properties()));
         }
 
     }
     public static Item getFishItem(ItemStack itemStack){
-        String name = itemStack.getName().getString();
+        String name = itemStack.getHoverName().getString();
         int index;
 
         if(!(itemStack.getItem().toString().equals("cod"))) return null;
@@ -70,5 +70,3 @@ public class FishItems {
         return null;
     }
 }
-
-

@@ -1,7 +1,7 @@
 package net.pmkjun.pyrofishinghelper.mixin;
 
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.projectile.FishingBobberEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.projectile.FishingHook;
 import net.pmkjun.pyrofishinghelper.FishHelperClient;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
@@ -11,7 +11,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 
-@Mixin(FishingBobberEntity.class)
+@Mixin(FishingHook.class)
 public abstract class FishingMixin {
     //private static final Logger LOGGER = LogManager.getLogger("FishingMixin");
     FishHelperClient client = FishHelperClient.getInstance();
@@ -20,11 +20,11 @@ public abstract class FishingMixin {
     private boolean caughtFish;
 
 
-    @Shadow @Nullable public abstract PlayerEntity getPlayerOwner();
+    @Shadow @Nullable public abstract Player getPlayerOwner();
 
     @Shadow public abstract boolean canUsePortals();
 
-    @Inject(method = "onRemoved", at = @At("RETURN"))
+    @Inject(method = "onClientRemoval", at = @At("RETURN"))
     private void onRemovedMixin(CallbackInfo ci) {
         String bobberOwner;
         try{

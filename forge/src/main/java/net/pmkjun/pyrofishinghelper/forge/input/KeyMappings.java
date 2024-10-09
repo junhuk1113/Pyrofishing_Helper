@@ -1,7 +1,9 @@
 package net.pmkjun.pyrofishinghelper.forge.input;
 
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.option.KeyBinding;
+import com.mojang.blaze3d.platform.InputConstants;
+
+import net.minecraft.client.KeyMapping;
+import net.minecraft.client.Minecraft;
 import net.minecraftforge.client.event.RegisterKeyMappingsEvent;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -11,8 +13,8 @@ import net.pmkjun.pyrofishinghelper.input.IKeyMappings;
 import net.minecraftforge.common.MinecraftForge;
 
 public class KeyMappings implements IKeyMappings {
-    public static KeyBinding openSettingScreen =
-            new KeyBinding("fishhelper.key.open_settings", 72, "fishhelper.key.category");
+    public static KeyMapping openSettingScreen =
+            new KeyMapping("fishhelper.key.open_settings", InputConstants.KEY_H, "fishhelper.key.category");
 
     @Override
     public void register() {
@@ -26,11 +28,11 @@ public class KeyMappings implements IKeyMappings {
 
     @SubscribeEvent
     public void onClientTick(TickEvent.ClientTickEvent event) {
-        MinecraftClient mc = MinecraftClient.getInstance();
+        Minecraft mc = Minecraft.getInstance();
 
         if(event.phase == TickEvent.Phase.END) {
-            while(openSettingScreen.wasPressed()) {
-                mc.setScreen(new ConfigScreen(mc.currentScreen));
+            while(openSettingScreen.consumeClick()) {
+                mc.setScreen(new ConfigScreen(mc.screen));
             }
         }
     }

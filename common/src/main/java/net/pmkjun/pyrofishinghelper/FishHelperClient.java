@@ -1,7 +1,7 @@
 package net.pmkjun.pyrofishinghelper;
 
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.gui.DrawContext;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiGraphics;
 import net.pmkjun.pyrofishinghelper.config.ConfigManage;
 import net.pmkjun.pyrofishinghelper.file.Data;
 import net.pmkjun.pyrofishinghelper.gui.FishCounterGui;
@@ -9,7 +9,7 @@ import net.pmkjun.pyrofishinghelper.gui.totemCooltimeGui;
 import net.pmkjun.pyrofishinghelper.util.Timer;
 
 public class FishHelperClient {
-    private final MinecraftClient mc;
+    private final Minecraft mc;
     private static FishHelperClient instance;
     public Data data;
     public ConfigManage configManage;
@@ -18,7 +18,7 @@ public class FishHelperClient {
     private final FishCounterGui fishCounterGui;
     private final Timer timer = new Timer();
     public FishHelperClient(){
-        this.mc = MinecraftClient.getInstance();
+        this.mc = Minecraft.getInstance();
         instance = this;
         this.configManage = new ConfigManage();
         this.data = this.configManage.load();
@@ -32,7 +32,7 @@ public class FishHelperClient {
     public void init(){
 
     }
-    public void renderEvent(DrawContext context) {
+    public void renderEvent(GuiGraphics context) {
         this.totemcooltimeGui.renderTick(context,this.timer);
         this.timer.updateTime();
         this.fishCounterGui.renderTick(context);
@@ -52,7 +52,7 @@ public class FishHelperClient {
     }
 
     public String getUsername(){
-        return this.mc.getSession().getUsername();
+        return this.mc.getUser().getName();
     }
 
     public static  FishHelperClient getInstance(){

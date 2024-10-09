@@ -2,26 +2,27 @@ package net.pmkjun.pyrofishinghelper.gui;
 
 import java.util.Arrays;
 
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.font.TextRenderer;
-import net.minecraft.client.gui.DrawContext;
-import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.text.Text;
+import com.mojang.blaze3d.vertex.PoseStack;
+
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.Font;
+import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.network.chat.Component;
 import net.pmkjun.pyrofishinghelper.FishHelperClient;
 import net.pmkjun.pyrofishinghelper.util.Earning;
 import net.pmkjun.pyrofishinghelper.util.FishCounterMode;
 
 public class FishCounterGui {
-    private MinecraftClient mc;
+    private Minecraft mc;
     private FishHelperClient client;
-    private TextRenderer font;
+    private Font font;
 
     public FishCounterGui(){
-        this.mc = MinecraftClient.getInstance();
+        this.mc = Minecraft.getInstance();
         this.client = FishHelperClient.getInstance();
     }
 
-    public void renderTick(DrawContext context){
+    public void renderTick(GuiGraphics context){
         String[] fishCounterData = new String[10];
         for(int i = 0; i < 6; i++) {
             if(client.data.toggleCounterMode == FishCounterMode.PERCENTAGE){
@@ -50,7 +51,7 @@ public class FishCounterGui {
             
     }
 
-    private void render(DrawContext context, String[] fishCounterData){
+    private void render(GuiGraphics context, String[] fishCounterData){
         int line = 0, x, y, elements_counts = 0;
         int start_point = 0, end_point = 10;
         String[] left_fields = {"커먼","언커먼","레어","에픽","레전더리","신화", "합", " ", "골드 환산", "엔트로피 환산"};
@@ -72,38 +73,38 @@ public class FishCounterGui {
             end_point = 10;
         }
 
-        x = 2 + (mc.getWindow().getScaledWidth() - (116)) * client.data.Counter_xpos / 1000;
-        y = 2 + (mc.getWindow().getScaledHeight() - (12) * (elements_counts+1) - 4) * client.data.Counter_ypos / 1000;
+        x = 2 + (mc.getWindow().getGuiScaledWidth() - (116)) * client.data.Counter_xpos / 1000;
+        y = 2 + (mc.getWindow().getGuiScaledHeight() - (12) * (elements_counts+1) - 4) * client.data.Counter_ypos / 1000;
             
         for(int i = start_point; i < end_point ; i++){
             renderWithoutTexture(line++, context, x, y, left_fields[i], fishCounterData[i]);
         }
     }
 
-    private void renderWithoutTexture(int i, DrawContext context,int x, int y, String left_field, String right_field){
-        MatrixStack poseStack = context.getMatrices();
-        this.font = this.mc.textRenderer;
+    private void renderWithoutTexture(int i, GuiGraphics context,int x, int y, String left_field, String right_field){
+        PoseStack poseStack = context.pose();
+        this.font = this.mc.font;
         int width = 50, text_width;
 
-        text_width = this.font.getWidth(left_field);
+        text_width = this.font.width(left_field);
 
-        poseStack.push();
+        poseStack.pushPose();
         poseStack.translate((x + 2), y+4 + (12) * i, 0.0D);
         poseStack.scale(1f/1.1f, 1f/1.1f, 1f/1.1f);
-        context.drawTextWithShadow(this.font, Text.literal(left_field), width - text_width, 0, 0xFFFFFF);
+        context.drawString(this.font, Component.literal(left_field), width - text_width, 0, 0xFFFFFF);
         poseStack.scale(1.1f, 1.1f, 1.1f);
 		
-        poseStack.pop();
+        poseStack.popPose();
 
-        text_width = this.font.getWidth(right_field);
-        poseStack.push();
+        text_width = this.font.width(right_field);
+        poseStack.pushPose();
         poseStack.translate((x + 2 + 50 + 16), y+4 + (12) * i, 0.0D);
         poseStack.scale(1f/1.1f, 1f/1.1f, 1f/1.1f);
-        context.drawTextWithShadow(this.font, Text.literal(right_field), width - text_width, 0, 0xFFFFFF);
+        context.drawString(this.font, Component.literal(right_field), width - text_width, 0, 0xFFFFFF);
         
         poseStack.scale(1.1f, 1.1f, 1.1f);
 			
-        poseStack.pop();
+        poseStack.popPose();
         
     }
 }

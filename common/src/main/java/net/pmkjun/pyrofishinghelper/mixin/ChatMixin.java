@@ -1,7 +1,7 @@
 package net.pmkjun.pyrofishinghelper.mixin;
 
-import net.minecraft.client.gui.hud.ChatHud;
-import net.minecraft.text.Text;
+import net.minecraft.client.gui.components.ChatComponent;
+import net.minecraft.network.chat.Component;
 import net.pmkjun.pyrofishinghelper.FishHelperClient;
 import net.pmkjun.pyrofishinghelper.FishHelperMod;
 import net.pmkjun.pyrofishinghelper.item.FishItemList;
@@ -11,7 +11,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-@Mixin(ChatHud.class)
+@Mixin(ChatComponent.class)
 public abstract class ChatMixin {
     private static final int COMMON = 0;
     private static final int UNCOMMON = 1;
@@ -21,8 +21,8 @@ public abstract class ChatMixin {
     private static final int MYTHIC = 5;
 
     private final FishHelperClient client = FishHelperClient.getInstance();
-    @Inject(at = @At("RETURN"), method = "addMessage(Lnet/minecraft/text/Text;)V")
-    private void addMessageMixin(Text message, CallbackInfo ci) {
+    @Inject(at = @At("RETURN"), method = "addMessage(Lnet/minecraft/network/chat/Component;)V")
+    private void addMessageMixin(Component message, CallbackInfo ci) {
         if(client.data.toggleChattinglog)
             FishHelperMod.LOGGER.info(message.getString());
         

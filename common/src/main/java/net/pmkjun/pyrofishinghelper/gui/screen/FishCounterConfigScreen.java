@@ -1,21 +1,21 @@
 package net.pmkjun.pyrofishinghelper.gui.screen;
 
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.gui.DrawContext;
-import net.minecraft.client.gui.screen.Screen;
-import net.minecraft.client.gui.widget.ButtonWidget;
-import net.minecraft.text.Text;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.components.Button;
+import net.minecraft.client.gui.screens.Screen;
+import net.minecraft.network.chat.Component;
 import net.pmkjun.pyrofishinghelper.FishHelperClient;
 import net.pmkjun.pyrofishinghelper.gui.widget.Slider;
 import net.pmkjun.pyrofishinghelper.util.FishCounterMode;
 
 public class FishCounterConfigScreen extends Screen{
-    private MinecraftClient mc;
+    private Minecraft mc;
     private FishHelperClient client;
     private final Screen parentScreen;
-    private ButtonWidget toggleFishCounterButton;
-    private ButtonWidget toggleCounterModeButton;
-    private ButtonWidget toggleEarningCalculatorButton;
+    private Button toggleFishCounterButton;
+    private Button toggleCounterModeButton;
+    private Button toggleEarningCalculatorButton;
 
     private Slider counterXSlider;
     private Slider counterYSlider;
@@ -26,9 +26,9 @@ public class FishCounterConfigScreen extends Screen{
     String toggleFishCounter, toggleCounterMode, toggleEarningCalculator, resetCounter;
 
     public FishCounterConfigScreen(Screen parentScreen) {
-        super(Text.translatable("fishhelper.config.title"));
+        super(Component.translatable("fishhelper.config.title"));
         this.parentScreen = parentScreen;
-        this.mc = MinecraftClient.getInstance();
+        this.mc = Minecraft.getInstance();
         this.client = FishHelperClient.getInstance();
 
         width = 160;
@@ -40,51 +40,51 @@ public class FishCounterConfigScreen extends Screen{
         super.init();
         initButtonkey();
 
-        toggleFishCounterButton = ButtonWidget.builder(Text.translatable(toggleFishCounter),button -> {
+        toggleFishCounterButton = Button.builder(Component.translatable(toggleFishCounter),button -> {
             toggleFishCounter();
-        }).dimensions(getRegularX() + 5, getRegularY(), 150, 20).build();
-        this.addDrawableChild(toggleFishCounterButton);
+        }).pos(getRegularX() + 5, getRegularY()).size(150, 20).build();
+        this.addRenderableWidget(toggleFishCounterButton);
 
-        toggleCounterModeButton = ButtonWidget.builder(Text.translatable(toggleCounterMode),button -> {
+        toggleCounterModeButton = Button.builder(Component.translatable(toggleCounterMode),button -> {
             toggleCounterMode();
-        }).dimensions(getRegularX() + 5, getRegularY()+(20+2), 150, 20).build();
-        this.addDrawableChild(toggleCounterModeButton);
+        }).pos(getRegularX() + 5, getRegularY()+(20+2)).size(150, 20).build();
+        this.addRenderableWidget(toggleCounterModeButton);
 
-        toggleEarningCalculatorButton = ButtonWidget.builder(Text.translatable(toggleEarningCalculator), button ->{
+        toggleEarningCalculatorButton = Button.builder(Component.translatable(toggleEarningCalculator), button ->{
             toggleEarningCalculator();
-        }).dimensions(getRegularX()+5,getRegularY()+(20+2)*2,150,20).build();
-        this.addDrawableChild(toggleEarningCalculatorButton);
+        }).pos(getRegularX()+5,getRegularY()+(20+2)*2).size(150,20).build();
+        this.addRenderableWidget(toggleEarningCalculatorButton);
 
-        this.addDrawableChild(ButtonWidget.builder(Text.translatable("fishhelper.config.fishcounter_reset"), button ->{
+        this.addRenderableWidget(Button.builder(Component.translatable("fishhelper.config.fishcounter_reset"), button ->{
             client.resetFishCounter();
-        }).dimensions(getRegularX()+5, getRegularY()+(20+2)*3, 150, 20).build());
+        }).pos(getRegularX()+5, getRegularY()+(20+2)*3).size(150, 20).build());
 
-        counterXSlider = new Slider(getRegularX() + 5, getRegularY()+(20+2)*5, 150, 20, Text.literal("X : "),1,1000,this.client.data.Counter_xpos){
+        counterXSlider = new Slider(getRegularX() + 5, getRegularY()+(20+2)*5, 150, 20, Component.literal("X : "),1,1000,this.client.data.Counter_xpos){
             @Override
             protected void applyValue() {
                 client.data.Counter_xpos = getValueInt();
                 client.configManage.save();
             }
         };
-        this.addDrawableChild(counterXSlider);
+        this.addRenderableWidget(counterXSlider);
 
-        counterYSlider = new Slider(getRegularX() + 5, getRegularY()+(20+2)*6, 150, 20, Text.literal("Y : "),1,1000,this.client.data.Counter_ypos){
+        counterYSlider = new Slider(getRegularX() + 5, getRegularY()+(20+2)*6, 150, 20, Component.literal("Y : "),1,1000,this.client.data.Counter_ypos){
             @Override
             protected void applyValue() {
                 client.data.Counter_ypos = getValueInt();
                 client.configManage.save();
             }
         };
-        this.addDrawableChild(counterYSlider);
+        this.addRenderableWidget(counterYSlider);
 
-        this.addDrawableChild(ButtonWidget.builder(Text.translatable("fishhelper.config.backbutton"),button -> {
+        this.addRenderableWidget(Button.builder(Component.translatable("fishhelper.config.backbutton"),button -> {
             mc.setScreen(parentScreen);
-        }).dimensions(mc.getWindow().getScaledWidth() / 2 - 25 ,super.height-30, 50,20).build());
+        }).pos(mc.getWindow().getGuiScaledWidth() / 2 - 25 ,super.height-30).size(50,20).build());
     }
 
-    public void render(DrawContext context, int mouseX, int mouseY, float delta) {
+    public void render(GuiGraphics context, int mouseX, int mouseY, float delta) {
         this.renderBackground(context);
-        context.drawTextWithShadow(this.textRenderer, Text.translatable("fishhelper.config.changepos"), getRegularX() + 5, getRegularY()+(20 + 2)*5-10, 0xFFFFFF);
+        context.drawString(this.font, Component.translatable("fishhelper.config.changepos"), getRegularX() + 5, getRegularY()+(20 + 2)*5-10, 0xFFFFFF);
 
         this.counterXSlider.render(context, mouseX, mouseY, delta);
         this.counterYSlider.render(context, mouseX, mouseY, delta);
@@ -95,11 +95,11 @@ public class FishCounterConfigScreen extends Screen{
     //버튼 눌렀을 때 동작
     private void toggleFishCounter(){
         if(client.data.toggleFishCounter){
-            toggleFishCounterButton.setMessage(Text.translatable("fishhelper.config.fishcounter_disable"));
+            toggleFishCounterButton.setMessage(Component.translatable("fishhelper.config.fishcounter_disable"));
             client.data.toggleFishCounter = false;
         }
         else{
-            toggleFishCounterButton.setMessage(Text.translatable("fishhelper.config.fishcounter_enable"));
+            toggleFishCounterButton.setMessage(Component.translatable("fishhelper.config.fishcounter_enable"));
             client.data.toggleFishCounter = true;
         }
         client.configManage.save();
@@ -107,15 +107,15 @@ public class FishCounterConfigScreen extends Screen{
     
     private void toggleCounterMode(){
         if(client.data.toggleCounterMode == FishCounterMode.PERCENTAGE){
-            toggleCounterModeButton.setMessage(Text.translatable("fishhelper.config.fishcounter_setting.mode.count"));
+            toggleCounterModeButton.setMessage(Component.translatable("fishhelper.config.fishcounter_setting.mode.count"));
             client.data.toggleCounterMode = FishCounterMode.COUNT;
         }
         else if(client.data.toggleCounterMode == FishCounterMode.COUNT){
-            toggleCounterModeButton.setMessage(Text.translatable("fishhelper.config.fishcounter_setting.mode.all"));
+            toggleCounterModeButton.setMessage(Component.translatable("fishhelper.config.fishcounter_setting.mode.all"));
             client.data.toggleCounterMode = FishCounterMode.ALL;
         }
         else if(client.data.toggleCounterMode == FishCounterMode.ALL){
-            toggleCounterModeButton.setMessage(Text.translatable("fishhelper.config.fishcounter_setting.mode.percentage"));
+            toggleCounterModeButton.setMessage(Component.translatable("fishhelper.config.fishcounter_setting.mode.percentage"));
             client.data.toggleCounterMode = FishCounterMode.PERCENTAGE;
         }
         client.configManage.save();
@@ -123,11 +123,11 @@ public class FishCounterConfigScreen extends Screen{
 
     private void toggleEarningCalculator(){
         if(client.data.toggleEarningCalculator){
-            toggleEarningCalculatorButton.setMessage(Text.translatable("fishhelper.config.fishcounter_setting.toggleEarningCalculator_disable"));
+            toggleEarningCalculatorButton.setMessage(Component.translatable("fishhelper.config.fishcounter_setting.toggleEarningCalculator_disable"));
             client.data.toggleEarningCalculator = false;
         }
         else{
-            toggleEarningCalculatorButton.setMessage(Text.translatable("fishhelper.config.fishcounter_setting.toggleEarningCalculator_enable"));
+            toggleEarningCalculatorButton.setMessage(Component.translatable("fishhelper.config.fishcounter_setting.toggleEarningCalculator_enable"));
             client.data.toggleEarningCalculator = true;
         }
         client.configManage.save();
@@ -160,15 +160,15 @@ public class FishCounterConfigScreen extends Screen{
     }
 
     int getRegularX() {
-        return  mc.getWindow().getScaledWidth() / 2 - width / 2;
+        return  mc.getWindow().getGuiScaledWidth() / 2 - width / 2;
     }
 
     int getRegularY() {
-        return mc.getWindow().getScaledHeight() / 2 - height / 2;
+        return mc.getWindow().getGuiScaledHeight() / 2 - height / 2;
     }
 
     @Override
-    public void close() {
+    public void onClose() {
         this.mc.setScreen(parentScreen);
     }
 }
